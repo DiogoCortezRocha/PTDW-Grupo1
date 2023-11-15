@@ -54,6 +54,7 @@
         <!-- Icons -->
         <link href="{{ asset('white') }}/css/nucleo-icons.css" rel="stylesheet" />
         <!-- CSS -->
+        <link rel="stylesheet" href="{{asset('white')}}/css/formulario.css">
         <link href="{{ asset('white') }}/css/white-dashboard.css?v=1.0.0" rel="stylesheet" />
         <link href="{{ asset('white') }}/css/theme.css" rel="stylesheet" />
 
@@ -120,7 +121,7 @@
                                         <span class="nav-link-text" >{{ __('Laravel Examples') }}</span>
                                         <b class="caret mt-1"></b>
                                     </a>
-                    
+
                                     <div class="collapse show" id="laravel-examples">
                                         <ul class="nav pl-4">
                                             <li >
@@ -183,7 +184,7 @@
                             </ul>
                         </div>
                     </div>
-                    
+
             <div class="main-panel">
                 <nav class="navbar navbar-expand-lg navbar-absolute navbar-transparent">
                     <div class="container-fluid">
@@ -271,7 +272,7 @@
                         </div>
                     </div>
                 </div>
-                
+
 <div class="modal modal-search fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="searchModal" aria-hidden="true">
 <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -301,7 +302,7 @@
                 </div>
             </div>
             <div class="card-body">
-                
+
                 <div class="">
                     <table class="table tablesorter " id="">
                         <thead class=" text-primary">
@@ -331,13 +332,13 @@
                                                         </tbody>
                     </table>
                 </div>
-                
+
             </div>
-            
+
             <div class="card-footer py-4">
-                
+
                 <nav class="d-flex justify-content-end" aria-label="...">
-                    
+
                 </nav>
             </div>
         </div>

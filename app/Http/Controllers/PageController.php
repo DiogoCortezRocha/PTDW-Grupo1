@@ -73,4 +73,14 @@ class PageController extends Controller
     {
         return view('pages.upgrade');
     }
+
+    /**
+     * Display formulario page
+     *
+     * @return \Illuminate\View\View
+     */
+    public function formulario()
+    {
+        return view('pages.formulario');
+    }
 }
