@@ -18,8 +18,9 @@
         <div class="collapse navbar-collapse" id="navigation">
 
             <img src="white/img/ua-logo.svg" alt="Icon" width="45px">
-            Universidade de Aveiro
-                <ul class="navbar-nav ml-auto">
+                <div class="UA"> Universidade de Aveiro
+                </div>
+                    <ul class="navbar-nav ml-auto">
 
 
                 <li class="dropdown nav-item">

@@ -13417,12 +13417,12 @@ img {
 }
 
 .navbar.navbar-absolute {
-  position: absolute;
+  position: fixed;
   z-index: 1050;
 }
 
 .navbar.navbar-transparent {
-  background: transparent !important;
+  background: #011212 !important;
 }
 
 .navbar.bg-white .navbar-nav .search-bar.input-group i {
@@ -16900,7 +16900,7 @@ Copyright (c) 2015 Daniel Eden
 }
 
 .white-content .navbar.navbar-transparent .navbar-nav li a:not(.dropdown-item) {
-  color: #1d253b;
+  color: white;
 }
 
 .white-content .navbar.navbar-transparent .navbar-nav li a:not(.dropdown-item) i {
@@ -16924,8 +16924,8 @@ Copyright (c) 2015 Daniel Eden
 }
 
 .white-content .sidebar {
-  box-shadow: 0 2px 22px 0 rgba(0, 0, 0, 0.1), 0 4px 20px 0 rgba(0, 0, 0, 0.15);
-}
+    box-shadow: 0 2px 22px 0 rgba(0, 0, 0, 0.1), 0 4px 20px 0 rgba(0, 0, 0, 0.15);
+  }
 
 .white-content .sidebar p {
   color: rgba(255, 255, 255, 0.8);
@@ -17964,3 +17964,8 @@ Copyright (c) 2015 Daniel Eden
 }
 
 /*# sourceMappingURL=dashboard-free.css.map */
+
+.UA{
+    color: white;
+    padding-left: 10px;
+}
