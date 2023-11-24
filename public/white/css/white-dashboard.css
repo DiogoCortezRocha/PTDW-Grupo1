@@ -17816,6 +17816,7 @@ Copyright (c) 2015 Daniel Eden
 .login-page .link {
   font-size: 10px;
   text-decoration: none;
+
 }
 
 .card-register .card-header {
@@ -17968,4 +17969,12 @@ Copyright (c) 2015 Daniel Eden
 .UA{
     color: white;
     padding-left: 10px;
+}
+
+.blackTitle{
+    color: black;
+    font-weight: bold;
+    font-size: 30px;
+    padding-left: 35%;
+    padding-top: 10%;
 }
