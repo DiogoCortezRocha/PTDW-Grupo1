@@ -83,4 +83,14 @@ class PageController extends Controller
     {
         return view('pages.formulario');
     }
+
+    /**
+     * Display horarios page
+     *
+     * @return \Illuminate\View\View
+     */
+    public function horarios()
+    {
+        return view('pages.horarios');
+    }
 }

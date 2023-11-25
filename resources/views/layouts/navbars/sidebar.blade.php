@@ -33,6 +33,12 @@
                     <p>{{ _('Especificidades de salas') }}</p>
                 </a>
             </li>
+            <li @if ($pageSlug == 'horarios') class="active" @endif>
+                <a href="{{ route('pages.horarios') }}">
+                    <i class="tim-icons icon-single-02"></i>
+                    <p>{{ _('Restrições de horários') }}</p>
+                </a>
+            </li>
 
 
         </ul>
