@@ -93,4 +93,10 @@ class PageController extends Controller
     {
         return view('pages.horarios');
     }
+
+
+    public function detalhesDocente()
+    {
+        return view('pages.detalhesDocente');
+    }
 }
