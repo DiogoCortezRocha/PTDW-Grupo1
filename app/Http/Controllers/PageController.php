@@ -99,4 +99,20 @@ class PageController extends Controller
     {
         return view('pages.detalhesDocente');
     }
+
+
+    public function unidadesCurriculares()
+    {
+        return view('pages.unidadesCurriculares');
+    }
+
+     /**
+     * Display ciclosEstudos page
+     *
+     * @return \Illuminate\View\View
+     */
+    public function ciclosEstudos()
+    {
+        return view('pages.ciclosEstudos');
+    }
 }
