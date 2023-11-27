@@ -1,4 +1,4 @@
-@extends('layouts.app', ['page' => __('Tables'), 'pageSlug' => 'tables'])
+@extends('layouts.app', ['page' => __('users'), 'pageSlug' => 'users'])
 
 @section('content')
     <div class="row">
@@ -7,7 +7,7 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-8">
-                            <h4 class="card-title">Users</h4>
+                            <h2 class="card-title"><strong>Utilizadores</strong></h2>
                         </div>
                         <div class="col-4 text-right">
                             <a href="#" class="btn btn-sm btn-primary">
@@ -29,6 +29,7 @@
                                     <th scope="col">Name</th>
                                     <th scope="col">Email</th>
                                     <th scope="col">Creation Date</th>
+                                    <th>Tipo</th>
                                     <th scope="col"></th>
                                 </tr>
                             </thead>
@@ -39,6 +40,7 @@
                                         <a >grupo1@ua.com</a>
                                     </td>
                                     <td>25/02/2020 09:11</td>
+                                    <td>CH</td>
                                     <td class="text-right">
                                         <div class="dropdown">
                                             <a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
@@ -51,6 +53,29 @@
                                         </div>
                                     </td>
                                 </tr>
+
+
+
+                                <tr>
+                                    <td>maria</td>
+                                    <td>
+                                        <a >maria@ua.com</a>
+                                    </td>
+                                    <td>25/02/2020 09:11</td>
+                                    <td>Docente</td>
+                                    <td class="text-right">
+                                        <div class="dropdown">
+                                            <a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="fas fa-ellipsis-v"></i>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                                                <a class="dropdown-item" href="#">Edit</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+
                             </tbody>
                         </table>
                     </div>
