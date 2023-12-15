@@ -19,11 +19,11 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([UsersTableSeeder::class]);
-        /*
+
         UnidadeCurricularFactory::new()->count(10)->create();
-            SalaFactory::new()->count(5)->create();
+           SalaFactory::new()->count(5)->create();
             BlocoFactory::new()->count(5)->create();
             RestricoesFactory::new()->count(5)->create();
-        */
+
     }
 }

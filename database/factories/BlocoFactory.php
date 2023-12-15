@@ -18,8 +18,8 @@ class BlocoFactory extends Factory
     {
         return [
             //
-            'partDoDia' => $this->fake()->randomElement(['manhã', 'tarde', 'noite']),
-            'diaDaSemana' => $this->fake()->randomElement(['segunda-feira', 'terça-feira', 'quarta-feira', 'quinta-feira', 'sexta-feira']),
+            'partDoDia' => $this->faker->randomElement(['manhã', 'tarde', 'noite']),
+            'diaDaSemana' => $this->faker->randomElement(['segunda-feira', 'terça-feira', 'quarta-feira', 'quinta-feira', 'sexta-feira']),
 
 
         ];

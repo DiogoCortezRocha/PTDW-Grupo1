@@ -18,10 +18,8 @@ class SalaFactory extends Factory
     {
         return [
             //
-            'numero' => function () {
-                // Gere números no formato 3.1.x
-                return "5.1." . $this->faker->unique()->randomNumber(0,30);
-            },
+            'numero' => "5.1." . rand(0, 30),
+
             'tipo' => $this->faker->randomElement(['normal', 'laboratorial','informatica']),
         ];
     }
