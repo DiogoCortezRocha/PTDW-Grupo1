@@ -4,6 +4,9 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\UnidadeCurricularController;
+use App\Http\Controllers\SalaController;
+use App\Http\Controllers\RestricaoController;
+use App\Http\Controllers\BlocoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,7 +35,6 @@ Auth::routes();
 Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home')->middleware('auth');
 
 
-Route::get('/UnidadesCurriculares/json',[UnidadeCurricularController::class,'indexJson']);
 Route::group(['middleware' => 'auth'], function () {
 		Route::get('icons', ['as' => 'pages.icons', 'uses' => 'App\Http\Controllers\PageController@icons']);
 		Route::get('maps', ['as' => 'pages.maps', 'uses' => 'App\Http\Controllers\PageController@maps']);
@@ -56,3 +58,16 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
 });
 
+// Todas as Ucs json
+Route::get('/UnidadesCurriculares/json',[UnidadeCurricularController::class,'tudoJson']);
+
+//Todas as salas Json
+Route::get('/Salas/json',[SalaController::class,'tudoJson']);
+
+
+//Todas os Blocos Json
+Route::get('/Blocos/json',[BlocoController::class,'tudoJson']);
+
+
+//Todas as Restricoes Json
+Route::get('/Restricoes/json',[RestricaoController::class,'tudoJson']);

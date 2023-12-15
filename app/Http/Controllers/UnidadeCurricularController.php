@@ -13,13 +13,13 @@ class UnidadeCurricularController extends Controller
      /**
      * Display a listing of UnidadeCurriculares.
      */
-    public function indexJson()
+    public function tudoJson()
     {
         $ucs = UnidadeCurricular::all();
         return response()->json($ucs);
 
     }
-    public function index()
+    public function tudo()
     {
 
         $ucs = UnidadeCurricular::all();
