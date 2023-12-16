@@ -46,7 +46,7 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('formulario', ['as' => 'pages.formulario', 'uses' => 'App\Http\Controllers\PageController@formulario']);
         Route::get('horarios', ['as' => 'pages.horarios', 'uses' => 'App\Http\Controllers\PageController@horarios']);
         Route::get('detalhesDocente', ['as' => 'pages.detalhesDocente', 'uses' => 'App\Http\Controllers\PageController@detalhesDocente']);
-        Route::get('unidadesCurriculares', ['as' => 'pages.unidadesCurriculares', 'uses' => 'App\Http\Controllers\PageController@unidadesCurriculares']);
+        Route::get('unidadesCurriculares', ['as' => 'pages.unidadesCurriculares', 'uses' => 'App\Http\Controllers\UnidadeCurricularController@Index']);
         Route::get('ciclosEstudos', ['as' => 'pages.ciclosEstudos', 'uses' => 'App\Http\Controllers\PageController@ciclosEstudos']);
 
     });
@@ -57,17 +57,3 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'App\Http\Controllers\ProfileController@update']);
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
 });
-
-// Todas as Ucs json
-Route::get('/UnidadesCurriculares/json',[UnidadeCurricularController::class,'tudoJson']);
-
-//Todas as salas Json
-Route::get('/Salas/json',[SalaController::class,'tudoJson']);
-
-
-//Todas os Blocos Json
-Route::get('/Blocos/json',[BlocoController::class,'tudoJson']);
-
-
-//Todas as Restricoes Json
-Route::get('/Restricoes/json',[RestricaoController::class,'tudoJson']);

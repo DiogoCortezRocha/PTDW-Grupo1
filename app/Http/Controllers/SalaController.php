@@ -9,13 +9,13 @@ use App\Models\Sala;
 
 class SalaController extends Controller
 {
-    public function tudoJson()
+    public function IndexJson()
     {
         $salas = Sala::all();
         return response()->json($salas);
 
     }
-    public function tudo()
+    public function Index()
     {
 
         $salas = Sala::all();

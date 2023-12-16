@@ -9,13 +9,13 @@ use App\Models\Restricoes;
 class RestricaoController extends Controller
 {
     //
-    public function tudoJson()
+    public function IndexJson()
     {
         $restricoes = Restricoes::all();
         return response()->json($restricoes);
 
     }
-    public function tudo()
+    public function Index()
     {
 
         $restricoes = Restricoes::all();

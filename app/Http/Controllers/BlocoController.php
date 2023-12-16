@@ -9,13 +9,13 @@ use App\Models\Bloco;
 class BlocoController extends Controller
 {
     //
-    public function tudoJson()
+    public function indexJson()
     {
         $blocos = Bloco::all();
         return response()->json($blocos);
 
     }
-    public function tudo()
+    public function index()
     {
 
         $blocos = Bloco::all();
