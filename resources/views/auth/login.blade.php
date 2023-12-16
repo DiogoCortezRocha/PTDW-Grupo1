@@ -1,4 +1,4 @@
-@extends('layouts.app', ['class' => 'login-page', 'page' => _('Login Page'), 'contentClass' => 'login-page'])
+@extends('layouts.app', ['class' => 'login-page', 'page' => __('Login Page'), 'contentClass' => 'login-page'])
 
 @section('content')
 
@@ -8,7 +8,7 @@
 
             <div class="card card-login card-white">
 
-                    <h1 class="blackTitle">{{ _('Login') }}</h1>
+                    <h1 class="blackTitle">{{ __('Login') }}</h1>
                 <div class="card-body">
                     <div class="input-group{{ $errors->has('email') ? ' has-danger' : '' }}">
                         <div class="input-group-prepend">
@@ -16,7 +16,7 @@
                                 <i class="tim-icons icon-email-85"></i>
                             </div>
                         </div>
-                        <input type="email" name="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="{{ _('Email') }}">
+                        <input type="email" name="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="{{ __('Email') }}">
                         @include('alerts.feedback', ['field' => 'email'])
                     </div>
                     <div class="input-group{{ $errors->has('password') ? ' has-danger' : '' }}">
@@ -25,21 +25,21 @@
                                 <i class="tim-icons icon-lock-circle"></i>
                             </div>
                         </div>
-                        <input type="password" placeholder="{{ _('Password') }}" name="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}">
+                        <input type="password" placeholder="{{ __('Password') }}" name="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}">
                         @include('alerts.feedback', ['field' => 'password'])
                     </div>
                 </div>
                 <div class="card-footer">
-                    <button type="submit" href="" class="btn btn-primary btn-lg btn-block mb-3">{{ _('Get Started') }}</button>
+                    <button type="submit" href="" class="btn btn-primary btn-lg btn-block mb-3">{{ __('Get Started') }}</button>
                     <div class="pull-left">
                         <h6>
-                            <a href="{{ route('register') }}" class="link footer-link">{{ _('Criar Conta') }}</a>
+                            <a href="{{ route('register') }}" class="link footer-link">{{ __('Criar Conta') }}</a>
                         </h6>
                     </div>
                     <div class="pull-right">
                         <h6>
 
-                            <a href="{{ route('password.request') }}" class="link footer-link">{{ _('Perdeu a Password?') }}</a>
+                            <a href="{{ route('password.request') }}" class="link footer-link">{{ __('Perdeu a Password?') }}</a>
                         </h6>
                     </div>
                 </div>

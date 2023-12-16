@@ -24,7 +24,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
-                                    <label>{{ _('Unidade curricular') }}</label>
+                                    <label>{{ __('Unidade curricular') }}</label>
                                     <input type="text" name="name"
                                         class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"
 >
@@ -33,10 +33,10 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
-                                    <label>{{ _('Docente responsável') }}</label>
+                                    <label>{{ __('Docente responsável') }}</label>
                                     <input type="email" name="email"
                                         class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
-                                        placeholder="{{ _('Email address') }}"
+                                        placeholder="{{ __('Email address') }}"
                                         value="{{ old('email', auth()->user()->email) }}">
                                     @include('alerts.feedback', ['field' => 'email'])
                                 </div>
@@ -45,7 +45,7 @@
 
 
                         <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
-                            <label>{{ _('Outros docentes') }}</label>
+                            <label>{{ __('Outros docentes') }}</label>
                             <input type="email" name="email"
                                 class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}">
                             @include('alerts.feedback', ['field' => 'email'])
@@ -54,41 +54,41 @@
                         <div class="row">
                             <div class="col-md-3">
                                 <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
-                                    <label>{{ _('Utilização de laboratorios') }}</label>
+                                    <label>{{ __('Utilização de laboratorios') }}</label>
                                     <div class="d-flex justify-content-between">
                                         <div class="custom-control custom-checkbox">
                                             <input type="checkbox" class="custom-control-input" id="obrigatorio"
                                                 name="obrigatorio">
                                             <label class="custom-control-label"
-                                                for="obrigatorio">{{ _('Obrigatório') }}</label>
+                                                for="obrigatorio">{{ __('Obrigatório') }}</label>
                                         </div>
 
                                         <div class="custom-control custom-checkbox">
                                             <input type="checkbox" class="custom-control-input" id="preferencial"
                                                 name="preferencial">
                                             <label class="custom-control-label"
-                                                for="preferencial">{{ _('Preferencial') }}</label>
+                                                for="preferencial">{{ __('Preferencial') }}</label>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
-                                    <label>{{ _('Laboratorios possiveis') }}</label>
+                                    <label>{{ __('Laboratorios possiveis') }}</label>
                                     <input class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}">
                                     @include('alerts.feedback', ['field' => 'email'])
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
-                                    <label>{{ _('Laboratorios possiveis') }}</label>
+                                    <label>{{ __('Laboratorios possiveis') }}</label>
                                     <input class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}">
                                     @include('alerts.feedback', ['field' => 'email'])
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
-                                    <label>{{ _('Laboratorios possiveis') }}</label>
+                                    <label>{{ __('Laboratorios possiveis') }}</label>
                                     <input class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}">
                                     @include('alerts.feedback', ['field' => 'email'])
                                 </div>
@@ -96,21 +96,21 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
-                            <label>{{ _('Software necessário(nome,fabricante,versão,sistema operativo)') }}</label>
+                            <label>{{ __('Software necessário(nome,fabricante,versão,sistema operativo)') }}</label>
                             <input type="email" name="email"
                                 class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}">
                             @include('alerts.feedback', ['field' => 'email'])
                         </div>
 
                         <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
-                            <label>{{ _('Sala para Avaliação') }}</label>
+                            <label>{{ __('Sala para Avaliação') }}</label>
                             <input type="email" name="email"
                                 class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}">
                             @include('alerts.feedback', ['field' => 'email'])
                         </div>
                     </div>
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-fill btn-primary">{{ _('Guardar') }}</button>
+                        <button type="submit" class="btn btn-fill btn-primary">{{ __('Guardar') }}</button>
                     </div>
                 </form>
 

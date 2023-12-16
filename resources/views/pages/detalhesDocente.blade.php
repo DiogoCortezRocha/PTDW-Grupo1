@@ -78,23 +78,23 @@
                     @include('alerts.success')
 
                     <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
-                        <label>{{ _('Nome') }}</label>
+                        <label>{{ __('Nome') }}</label>
                         <input type="text" name="name"
                             class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"
-                            placeholder="{{ _('Name') }}" value="{{ old('name', auth()->user()->name) }}">
+                            placeholder="{{ __('Name') }}" value="{{ old('name', auth()->user()->name) }}">
                         @include('alerts.feedback', ['field' => 'name'])
                     </div>
 
                     <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
-                        <label>{{ _('Email address') }}</label>
+                        <label>{{ __('Email address') }}</label>
                         <input type="email" name="email"
                             class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
-                            placeholder="{{ _('Email address') }}" value="{{ old('email', auth()->user()->email) }}">
+                            placeholder="{{ __('Email address') }}" value="{{ old('email', auth()->user()->email) }}">
                         @include('alerts.feedback', ['field' => 'email'])
                     </div>
                 </div>
                 <div class="card-footer">
-                    <button type="submit" class="btn btn-fill btn-primary">{{ _('Save') }}</button>
+                    <button type="submit" class="btn btn-fill btn-primary">{{ __('Save') }}</button>
                 </div>
             </form>
         </div>
