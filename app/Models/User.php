@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class User extends Authenticatable
 {
@@ -42,4 +43,13 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+            /**
+     * the UnidadeCurriculares that belong to the user
+     *
+     */
+    public function unidadesCurriculares(): BelongsToMany
+    {
+        return $this->belongsToMany(UnidadeCurricular::class,'Utilizador_UnidadeCurricular','codigoUC','numeroFuncionario');
+    }
 }

@@ -22,7 +22,6 @@ return new class extends Migration
             $table->string('software');
             $table->string('salaAvaliacao');
             $table->unsignedBigInteger('numFuncDocResponsavel');
-
             $table->primary('codigo');
         });
     }
