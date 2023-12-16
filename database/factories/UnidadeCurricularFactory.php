@@ -17,7 +17,7 @@ class UnidadeCurricularFactory extends Factory
     public function definition(): array
     {
         return [
-            'codigo' => fake()->unique()->randomNumber(),
+            'codigo' => fake()->unique()->numberBetween(),
             'name' => fake()->name(),
             'acn' => fake()->word(),
             'horas' => fake()->numberBetween(1, 100),

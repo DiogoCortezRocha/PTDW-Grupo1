@@ -23,73 +23,62 @@
                     </div>
                 </div>
 
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table tablesorter" id="">
-                            <thead class="text-primary">
-                                <tr>
-                                    <th>
-                                        codigo
-                                    </th>
-                                    <th>
-                                        Nome
-                                    </th>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table tablesorter" id="">
+                                    <thead class="text-primary">
+                                        <tr>
+                                            <th>
+                                                codigo
+                                            </th>
+                                            <th>
+                                                Nome
+                                            </th>
 
 
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr onclick="window.location='{{ route('pages.detalhesDocente') }}';" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f5f5f5';" onmouseout="this.style.backgroundColor='';">
+                                        </tr>
+                                    </thead>
+                                    @if ($ucs)
+                                    @foreach ($ucs as $uc)
+                                    <tbody>
+                                        <tr onclick="window.location='{{ route('pages.detalhesDocente') }}';"
+                                            style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f5f5f5';"
+                                            onmouseout="this.style.backgroundColor='';">
 
-                                    <td>
-                                        123444
-                                    </td>
-                                    <td>
-                                        Desenvolvimento web multiplataforma
-                                    </td>
-                                    <td class="text-right">
-                                        <div class="dropdown">
-                                            <a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <i class="fas fa-ellipsis-v"></i>
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                                <a class="dropdown-item" href="#">Edit</a>
-                                            </div>
-                                        </div>
-                                    </td>
-
-
-
-                                </tr>
-
-                                <tr onclick="window.location='{{ route('pages.detalhesDocente') }}';" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f5f5f5';" onmouseout="this.style.backgroundColor='';">
-
-                                    <td>
-                                        123445
-                                    </td>
-                                    <td>
-                                        web design
-                                    </td>
-                                    <td class="text-right">
-                                        <div class="dropdown">
-                                            <a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <i class="fas fa-ellipsis-v"></i>
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                                <a class="dropdown-item" href="#">Edit</a>
-                                            </div>
-                                        </div>
-                                    </td>
+                                            <td>
+                                                {{ $uc->codigo }}
+                                            </td>
+                                            <td>
+                                                {{ $uc->name }}
+                                            </td>
+                                            <td class="text-right">
+                                                <div class="dropdown">
+                                                    <a class="btn btn-sm btn-icon-only text-light" href="#"
+                                                        role="button" data-toggle="dropdown" aria-haspopup="true"
+                                                        aria-expanded="false">
+                                                        <i class="fas fa-ellipsis-v"></i>
+                                                    </a>
+                                                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                                                        <a class="dropdown-item" href="#">Edit</a>
+                                                    </div>
+                                                </div>
+                                            </td>
 
 
-                                </tr>
 
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+                                        </tr>
+
+
+
+                                    </tbody>
+                                    @endforeach
+                                    @else
+                                        <p>Nenhuma Unidade Curricular</p>
+                                    @endif
+                                </table>
+                            </div>
+                        </div>
+
             </div>
         </div>
     </div>
