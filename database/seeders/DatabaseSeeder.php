@@ -6,8 +6,9 @@ use Database\Factories\BlocoFactory;
 use Database\Factories\RestricoesFactory;
 use Database\Factories\SalaFactory;
 use Database\Factories\UnidadeCurricularFactory;
-use Illuminate\Support\Facades\DB;
+
 use Illuminate\Database\Seeder;
+use Illuminate\Database\QueryException;
 
 class DatabaseSeeder extends Seeder
 {
@@ -23,7 +24,14 @@ class DatabaseSeeder extends Seeder
         UnidadeCurricularFactory::new()->count(10)->create();
            SalaFactory::new()->count(5)->create();
             BlocoFactory::new()->count(5)->create();
-            RestricoesFactory::new()->count(5)->create();
+            for ($i=0; $i < 10; $i++) {
+                try {
+                   RestricoesFactory::new()->create();
+                } catch (QueryException $e) {
+
+                }
+            }
+
 
     }
 }
