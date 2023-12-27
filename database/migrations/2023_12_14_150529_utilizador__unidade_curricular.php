@@ -17,7 +17,7 @@ return new class extends Migration
             $table->integer('codigoUC');
             $table->string('percentagem');
             $table->foreign('codigoUC')->references('codigo')->on('UnidadeCurricular');
-            $table->foreign('numeroFuncionario')->references('id')->on('users');
+            $table->foreign('numeroFuncionario')->references('numeroFuncionario')->on('users');
             $table->primary(['codigoUC', 'numeroFuncionario']);
         });
     }

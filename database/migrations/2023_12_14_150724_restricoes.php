@@ -15,7 +15,7 @@ return new class extends Migration
         Schema::create('Restricao', function (Blueprint $table) {
             $table->unsignedBigInteger('numeroFuncionario');
             $table->unsignedBigInteger('idBloco');
-            $table->foreign('numeroFuncionario')->references('id')->on('users');
+            $table->foreign('numeroFuncionario')->references('numeroFuncionario')->on('users');
             $table->foreign('idBloco')->references('id')->on('Bloco');
             $table->primary(['numeroFuncionario', 'idBloco']);
         });
