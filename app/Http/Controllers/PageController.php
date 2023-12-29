@@ -100,6 +100,11 @@ class PageController extends Controller
         return view('pages.detalhesDocente');
     }
 
+    public function detalhesUnidadesCurriculares()
+    {
+        return view('pages.detalhesUnidadesCurriculares');
+    }
+
 
     public function unidadesCurriculares()
     {

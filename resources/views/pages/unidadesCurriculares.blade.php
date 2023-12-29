@@ -41,7 +41,7 @@
                                     @if ($ucs)
                                     @foreach ($ucs as $uc)
                                     <tbody>
-                                        <tr onclick="window.location='{{ route('pages.detalhesDocente') }}';"
+                                        <tr onclick="window.location='{{ route('detalhesuc',['codigo' => $uc] ) }}';"
                                             style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f5f5f5';"
                                             onmouseout="this.style.backgroundColor='';">
 

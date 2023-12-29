@@ -29,13 +29,21 @@ class UnidadeCurricularController extends Controller
 
 
 //TODO: Enviar para view
-    public function show($codigo)
-    {
-        // Acessar a informação sobre uma UC
-        $uc = UnidadeCurricular::find($codigo);
-        return view('', compact('uc'));
-    }
+public function show($codigo)
+{
+    // Encontrar a Unidade Curricular com o código fornecido
+    $uc = UnidadeCurricular::where('codigo', $codigo)->first();
 
+    // Verificar se a UC foi encontrada
+    if ($uc) {
+        // Redirecionar para a rota 'funcionario' com todas as informações da UC
+        return redirect()->route('funcionario', ['codigo' => $uc]);
+    } else {
+        // Tratar caso a UC não seja encontrada
+        // Por exemplo, redirecionar de volta à página anterior ou para uma página de erro
+        return redirect()->back();
+    }
+}
 
 //TODO: Redirecionar para outra view
     public function destroy($codigo)
@@ -51,6 +59,5 @@ class UnidadeCurricularController extends Controller
         // Exibir o formulário para criar uma nova UC
         return view('');
     }
-
-
+   
 }
