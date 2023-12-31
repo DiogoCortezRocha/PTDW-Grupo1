@@ -27,13 +27,15 @@ class UsersTableSeeder extends Seeder
 */
 
         DB::table('users')->insert([
-            'id' => 1,
-            'name' => 'Diogo',
+            'numeroFuncionario' => 1,
+            'nome' => 'Diogo',
             'email' => 'diogo@ua.pt',
             'email_verified_at' => now(),
             'password' => Hash::make('1234'),
             'created_at' => now(),
-            'updated_at' => now()
+            'updated_at' => now(),
+            'telefone'=>916723481,
+            'acn'=>'ola'
         ]);
     }
 }

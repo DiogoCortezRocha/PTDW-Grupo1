@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Database\Factories\BlocoFactory;
+use Database\Factories\cursoFactory;
 use Database\Factories\RestricoesFactory;
 use Database\Factories\SalaFactory;
 use Database\Factories\UnidadeCurricularFactory;
@@ -20,7 +21,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([UsersTableSeeder::class]);
-
+        //cursoFactory::new()->count(10)->create();
         UnidadeCurricularFactory::new()->count(10)->create();
            SalaFactory::new()->count(5)->create();
             BlocoFactory::new()->count(5)->create();
