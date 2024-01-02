@@ -25,7 +25,7 @@ class UnidadeCurricularFactory extends Factory
             'LaboratorioPreferencial' => fake()->boolean,
             'software' => fake()->word,
             'salaAvaliacao' => fake()->word,
-            'numFuncDocResponsavel' => fake()->unique()->randomNumber(),
+            
         ];
     }
 }

@@ -37,5 +37,18 @@ class UsersTableSeeder extends Seeder
             'tipoUtilizador' => 'Docente',
 
         ]);
+        DB::table('users')->insert([
+            'numeroFuncionario' => fake()->unique()->numberBetween(),
+            'nome' => 'kika',
+            'email' => 'kika@ua.pt',
+            'email_verified_at' => now(),
+            'password' => Hash::make('1234'),
+            'telefone' => '978564732',
+            'acn'   => 'ola',
+            'tipoUtilizador' => 'Docente',
+
+        ]);
+        
+
     }
 }

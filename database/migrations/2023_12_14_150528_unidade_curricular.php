@@ -21,7 +21,6 @@ return new class extends Migration
             $table->boolean('LaboratorioPreferencial');
             $table->string('software');
             $table->string('salaAvaliacao');
-            $table->unsignedBigInteger('numFuncDocResponsavel');
             $table->primary('codigo');
         });
     }

@@ -6,7 +6,7 @@ use Database\Factories\BlocoFactory;
 use Database\Factories\RestricoesFactory;
 use Database\Factories\SalaFactory;
 use Database\Factories\UnidadeCurricularFactory;
-
+use Database\Factories\Utilizador_ucFactory;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\QueryException;
 
@@ -22,6 +22,14 @@ class DatabaseSeeder extends Seeder
         $this->call([UsersTableSeeder::class]);
 
         UnidadeCurricularFactory::new()->count(10)->create();
+        for ($i=0; $i < 5; $i++) {
+            try {
+                Utilizador_ucFactory::new()->create();
+            } catch (QueryException $e) {
+
+            }
+        }
+        
            SalaFactory::new()->count(5)->create();
             BlocoFactory::new()->count(5)->create();
             for ($i=0; $i < 10; $i++) {

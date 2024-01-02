@@ -16,8 +16,9 @@ class Utilizador_UnidadeCurricular extends Controller
     // Acessar as informações sobre uma UC e os números de funcionário associados
     $utilizadoruc = Utilizador_uc::where('codigoUC', $codigo->codigo)->get();
     $funcionarios = User::whereIn('numeroFuncionario', $utilizadoruc->pluck('numeroFuncionario'))->get();
-    // Se quiser apenas os números de funcionário
 
-    return view('pages.detalhesUnidadesCurriculares', compact('utilizadoruc','codigo','funcionarios'));
+    $docentenaoresponsavel = User::whereIn('numeroFuncionario', $utilizadoruc->where('docenteresponsavel', 0)->pluck('numeroFuncionario'))->get();
+    $docenteresponsavel = User::whereIn('numeroFuncionario', $utilizadoruc->where('docenteresponsavel', 1)->pluck('numeroFuncionario'))->get();
+    return view('pages.detalhesUnidadesCurriculares', compact('utilizadoruc','codigo','funcionarios','docenteresponsavel','docentenaoresponsavel'));
  }
 }

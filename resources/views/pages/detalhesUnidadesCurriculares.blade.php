@@ -35,9 +35,20 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label><strong>{{ __('Docentes a lecionar a unidade curricular') }}</strong></label>
-                    @foreach($funcionarios as $numero)
-                        <li>{{ $numero->nome }}</li>
-                    @endforeach
+                    <ul>
+                        @foreach ($docentenaoresponsavel as $numero)
+                            <li>{{ $numero->nome }}</li>
+                        @endforeach
+                    </ul>
+
+                    <label><strong>{{ __('Docente responsável pela unidade curricular') }}</strong></label>
+                    <ul>
+                        @foreach ($docenteresponsavel as $numero)
+                            <li>{{ $numero->nome }}</li>
+                        @endforeach
+                    </ul>
+                
+                   
                 </div>
             </div>
         </div>

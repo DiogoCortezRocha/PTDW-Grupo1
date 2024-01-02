@@ -20,7 +20,7 @@ class RestricoesFactory extends Factory
     {
         return [
             //
-            'numeroFuncionario'=>User::all()->random()->id,
+            'numeroFuncionario'=>User::all()->random()->numeroFuncionario,
             'idBloco'=>Bloco::all()->random()->id,
         ];
     }

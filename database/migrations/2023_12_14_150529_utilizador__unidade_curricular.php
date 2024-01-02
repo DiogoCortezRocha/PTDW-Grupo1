@@ -16,6 +16,8 @@ return new class extends Migration
             $table->unsignedBigInteger('numeroFuncionario');
             $table->integer('codigoUC');
             $table->string('percentagem');
+            $table->boolean('docenteresponsavel');
+            $table->timestamps();
             $table->foreign('codigoUC')->references('codigo')->on('UnidadeCurricular');
             $table->foreign('numeroFuncionario')->references('numeroFuncionario')->on('users');
             $table->primary(['codigoUC', 'numeroFuncionario']);
