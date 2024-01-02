@@ -23,8 +23,10 @@ class DatabaseSeeder extends Seeder
 
         UnidadeCurricularFactory::new()->count(10)->create();
            SalaFactory::new()->count(5)->create();
-            BlocoFactory::new()->count(5)->create();
-            for ($i=0; $i < 10; $i++) {
+            $this->call([Bloco::class]);
+
+
+            for ($i=0; $i < 12; $i++) {
                 try {
                    RestricoesFactory::new()->create();
                 } catch (QueryException $e) {

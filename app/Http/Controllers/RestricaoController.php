@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Models\Bloco;
 use App\Models\Restricoes;
+
 
 class RestricaoController extends Controller
 {
@@ -17,10 +18,16 @@ class RestricaoController extends Controller
     }
     public function Index()
     {
+        $user = auth()->user();
+        $blocosUtilizador = $user->blocos;
 
-        $restricoes = Restricoes::all();
 
-        return view('', compact('restricoes'));
+        $blocoInstance = new Bloco();
+        $partesDoDiaDiferentes = $blocoInstance->partesDoDia();
+        $diaDaSemanaDiferentes = $blocoInstance->diasDaSemana();
+        $blocosTodos = $blocoInstance->blocos();
+
+        return view('pages.horarios', compact('blocosUtilizador', 'partesDoDiaDiferentes', 'diaDaSemanaDiferentes', 'blocosTodos'));
     }
 
 }
