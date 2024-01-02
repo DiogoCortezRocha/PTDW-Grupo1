@@ -36,7 +36,7 @@
                 <div class="form-group">
                     <label><strong>{{ __('Docentes a lecionar a unidade curricular') }}</strong></label>
                     @foreach($funcionarios as $numero)
-                        <li>{{ $numero->name }}</li>
+                        <li>{{ $numero->nome }}</li>
                     @endforeach
                 </div>
             </div>
