@@ -9,4 +9,5 @@ class Utilizador_uc extends Model
 {
     use HasFactory;
     protected $table = "Utilizador_UnidadeCurricular";
+    public $timestamps = true;
 }

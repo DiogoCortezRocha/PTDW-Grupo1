@@ -27,13 +27,38 @@ class UsersTableSeeder extends Seeder
 */
 
         DB::table('users')->insert([
-            'id' => 1,
-            'name' => 'Diogo',
+            'numeroFuncionario' => fake()->unique()->numberBetween(),
+            'nome' => 'Diogo',
             'email' => 'diogo@ua.pt',
             'email_verified_at' => now(),
             'password' => Hash::make('1234'),
-            'created_at' => now(),
-            'updated_at' => now()
+            'telefone' => '123456789',
+            'acn'   => 'ola',
+            'tipoUtilizador' => 'Docente',
+
+        ]);
+
+        DB::table('users')->insert([
+            'numeroFuncionario' => fake()->unique()->numberBetween(),
+            'nome' => 'Grupo1',
+            'email' => 'Grupo1@ua.pt',
+            'email_verified_at' => now(),
+            'password' => Hash::make('1234'),
+            'telefone' => '123456789',
+            'acn'   => 'ola',
+            'tipoUtilizador' => 'ambos',
+
+        ]);
+        DB::table('users')->insert([
+            'numeroFuncionario' => fake()->unique()->numberBetween(),
+            'nome' => 'tony',
+            'email' => 'tony@ua.pt',
+            'email_verified_at' => now(),
+            'password' => Hash::make('1234'),
+            'telefone' => '123456789',
+            'acn'   => 'ola',
+            'tipoUtilizador' => 'comissaoHorarios',
+
         ]);
     }
 }
