@@ -61,3 +61,4 @@ Route::group(['middleware' => 'auth'], function () {
 
 Route::get('detalhesUnidadesCurriculares/{codigo}',[App\Http\Controllers\UnidadeCurricularController::class,'show'])->name('detalhesuc');
 Route::get('detalhesUnidadesCurricularesfuncionarios/{codigo}',[App\Http\Controllers\Utilizador_UnidadeCurricular::class,'show'])->name('funcionario');
+Route::post('/restricoes', 'App\Http\Controllers\RestricaoController@store')->name('restricoes.store');

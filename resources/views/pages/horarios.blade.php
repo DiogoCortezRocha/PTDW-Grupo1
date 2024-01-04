@@ -2,11 +2,12 @@
 
 @section('content')
     <div class="row">
+
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Horários</h5>
-                    <form>
+                    <form method="POST" action="{{ route('restricoes.store') }}">
                         @csrf
                         <table class="table">
                             <thead>
@@ -27,13 +28,10 @@
                                         <th scope="row">{{ $parteDia->partDoDia }}</th>
                                         @foreach ($diaDaSemanaDiferentes as $dia)
                                             <td>
-                                                <input type="checkbox"
-                                                    name="horarios[{{ $sequencial }}][{{ $dia->id }}]"
+                                                <input type="checkbox" name="blocos[]"
                                                     id="bloco{{ $sequencial }}{{ $dia->id }}"
-                                                    value="{{ $parteDia->id }}"
-                                                    @if (in_array($sequencial, $blocosUtilizador->pluck('id')->toArray())) checked @endif
-
-                                                >
+                                                    value="{{ $sequencial }}"
+                                                    @if (in_array($sequencial, $blocosUtilizador->pluck('id')->toArray())) checked @endif>
                                             </td>
                                             @php
 
@@ -52,5 +50,16 @@
                 </div>
             </div>
         </div>
+        @if (session('success'))
+            <div id="success-message" class="alert alert-success">
+                {{ session('success') }}
+            </div>
+            <script>
+                setTimeout(function() {
+                    const element = document.getElementById('success-message');
+                    element.style.display = 'none';
+                }, 5000);
+            </script>
+        @endif
     </div>
 @endsection
