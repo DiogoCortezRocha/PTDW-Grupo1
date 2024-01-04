@@ -10,7 +10,7 @@ class Bloco extends Model
     use HasFactory;
 
 
- /**
+    /**
      * The table associated with the model.
      *
      * @var string
@@ -23,7 +23,7 @@ class Bloco extends Model
      */
     protected $primaryKey = 'id';
 
-     /**
+    /**
      * The "type" of the auto-incrementing ID.
      *
      * @var string
@@ -58,6 +58,24 @@ class Bloco extends Model
 
 
 
+    // retorna as partes do dia diferntes que existem na base de dados
 
+    public  function partesDoDia()
+    {
+        return $this->select('partDoDia')->distinct()->get();
+    }
 
+    // retorna os dias da semana diferentes que existem na base de dados
+
+    public  function diasDaSemana()
+    {
+        return $this->select('diaDaSemana')->distinct()->get();
+    }
+
+    // retorna os blocos que existem na base de dados
+
+    public  function blocos()
+    {
+        return $this->select('id')->distinct()->get();
+    }
 }
