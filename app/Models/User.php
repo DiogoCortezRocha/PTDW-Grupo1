@@ -14,14 +14,33 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
 
     /**
+     * The primary key associated with the table.
+     *
+     * @var string
+     */
+    protected $primaryKey = 'numeroFuncionario';
+
+    /**
+     * Indicates if the IDs are auto-incrementing.
+     *
+     * @var bool
+     */
+    public $incrementing = false;
+    
+    /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'numeroFuncionario',
+        'nome',
         'email',
+        'telefone',
         'password',
+        'acn',
+        'tipoUtilizador',
+        'restricaoSubmetida'
     ];
 
     /**
@@ -44,12 +63,33 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-            /**
+    /**
      * the UnidadeCurriculares that belong to the user
      *
      */
     public function unidadesCurriculares(): BelongsToMany
     {
         return $this->belongsToMany(UnidadeCurricular::class,'Utilizador_UnidadeCurricular','codigoUC','numeroFuncionario');
+    }
+
+    /**
+     * The Blocos that belong to the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function blocos(): BelongsToMany
+    {
+        return $this->belongsToMany(Bloco::class, 'Restricao', 'numeroFuncionario', 'idBloco');
+    }
+
+
+    /**
+     * Get the observacao associated with the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function observacao(): HasOne
+    {
+        return $this->hasOne(Observacao::class, 'numeroFuncionario', 'numeroFuncionario');
     }
 }

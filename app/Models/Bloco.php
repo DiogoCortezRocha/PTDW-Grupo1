@@ -56,8 +56,14 @@ class Bloco extends Model
 
     ];
 
-
-
-
+    /**
+     * The Users that belong to the Bloco
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function users(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'Restricao', 'idBloco', 'numeroFuncionario');
+    }
 
 }
