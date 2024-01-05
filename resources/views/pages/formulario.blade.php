@@ -4,9 +4,14 @@
     <div class="row">
 
         <div class="tab">
-            <button onclick="openCity(event, 'London')">TI</button>
-            <button onclick="openCity(event, 'Paris')">DADM</button>
-            <button onclick="openCity(event, 'Tokyo')">DWM</button>
+            @foreach ($uc as $unidadeCurricular)
+                <button data-name="{{ $unidadeCurricular->name }}" data-email="{{ $unidadeCurricular->email }}"
+                        data-laboratorio-obrigatorio="{{ $unidadeCurricular->LaboratorioObrigatorio }}"
+                        data-laboratorio-preferencial="{{ $unidadeCurricular->LaboratorioPreferencial }}"
+                        data-software="{{ $unidadeCurricular->software }}"
+                        onclick="fillForm(this)">{{ $unidadeCurricular->name }}
+                </button>
+            @endforeach
         </div>
     </div>
 
@@ -26,8 +31,7 @@
                                 <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
                                     <label>{{ __('Unidade curricular') }}</label>
                                     <input type="text" name="name"
-                                        class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"
->
+                                        class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}">
                                     @include('alerts.feedback', ['field' => 'name'])
                                 </div>
                             </div>
@@ -58,14 +62,14 @@
                                     <div class="d-flex justify-content-between">
                                         <div class="custom-control custom-checkbox">
                                             <input type="checkbox" class="custom-control-input" id="obrigatorio"
-                                                name="obrigatorio">
+                                                name="obrigatorio" @if ($unidadeCurricular->LaboratorioObrigatorio == 1) checked @endif>
                                             <label class="custom-control-label"
                                                 for="obrigatorio">{{ __('Obrigatório') }}</label>
                                         </div>
 
                                         <div class="custom-control custom-checkbox">
                                             <input type="checkbox" class="custom-control-input" id="preferencial"
-                                                name="preferencial">
+                                                name="preferencial" @if ($unidadeCurricular->LaboratorioPreferencial == 1) checked @endif>
                                             <label class="custom-control-label"
                                                 for="preferencial">{{ __('Preferencial') }}</label>
                                         </div>
@@ -73,40 +77,58 @@
                                 </div>
                             </div>
                             <div class="col-md-3">
-                                <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
+                                <div class="form-group{{ $errors->has('sala') ? ' has-danger' : '' }}">
                                     <label>{{ __('Laboratorios possiveis') }}</label>
-                                    <input class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}">
-                                    @include('alerts.feedback', ['field' => 'email'])
+                                    <select name="sala"
+                                        class="form-control{{ $errors->has('sala') ? ' is-invalid' : '' }}">
+                                        @foreach ($salas as $sala)
+                                            <option value="{{ $sala->numero }}">{{ $sala->numero }}</option>
+                                        @endforeach
+                                    </select>
+                                    @include('alerts.feedback', ['field' => 'sala'])
                                 </div>
                             </div>
                             <div class="col-md-3">
-                                <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
+                                <div class="form-group{{ $errors->has('sala') ? ' has-danger' : '' }}">
                                     <label>{{ __('Laboratorios possiveis') }}</label>
-                                    <input class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}">
-                                    @include('alerts.feedback', ['field' => 'email'])
+                                    <select name="sala"
+                                        class="form-control{{ $errors->has('sala') ? ' is-invalid' : '' }}">
+                                        @foreach ($salas as $sala)
+                                            <option value="{{ $sala->numero }}">{{ $sala->numero }}</option>
+                                        @endforeach
+                                    </select>
+                                    @include('alerts.feedback', ['field' => 'sala'])
                                 </div>
                             </div>
                             <div class="col-md-3">
-                                <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
+                                <div class="form-group{{ $errors->has('sala') ? ' has-danger' : '' }}">
                                     <label>{{ __('Laboratorios possiveis') }}</label>
-                                    <input class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}">
-                                    @include('alerts.feedback', ['field' => 'email'])
+                                    <select name="sala"
+                                        class="form-control{{ $errors->has('sala') ? ' is-invalid' : '' }}">
+                                        @foreach ($salas as $sala)
+                                            <option value="{{ $sala->numero }}">{{ $sala->numero }}</option>
+                                        @endforeach
+                                    </select>
+                                    @include('alerts.feedback', ['field' => 'sala'])
                                 </div>
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
+                        <div class="form-group{{ $errors->has('software') ? ' has-danger' : '' }}">
                             <label>{{ __('Software necessário(nome,fabricante,versão,sistema operativo)') }}</label>
-                            <input type="email" name="email"
-                                class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}">
-                            @include('alerts.feedback', ['field' => 'email'])
+                            <input type="text" name="software"
+                                   class="form-control{{ $errors->has('software') ? ' is-invalid' : '' }}">
+                            @include('alerts.feedback', ['field' => 'software'])
                         </div>
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
+                        <div class="form-group{{ $errors->has('tipo') ? ' has-danger' : '' }}">
                             <label>{{ __('Sala para Avaliação') }}</label>
-                            <input type="email" name="email"
-                                class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}">
-                            @include('alerts.feedback', ['field' => 'email'])
+                            <select name="tipo" class="form-control{{ $errors->has('tipo') ? ' is-invalid' : '' }}">
+                                @foreach ($tiposSalas as $tipo)
+                                    <option value="{{ $tipo }}">{{ $tipo }}</option>
+                                @endforeach
+                            </select>
+                            @include('alerts.feedback', ['field' => 'tipo'])
                         </div>
                     </div>
                     <div class="card-footer">
@@ -163,4 +185,19 @@
             border-top: none;
         }
     </style>
+    <script>
+      function fillForm(button) {
+    var name = button.getAttribute('data-name');
+    var email = button.getAttribute('data-email');
+    var laboratorioObrigatorio = button.getAttribute('data-laboratorio-obrigatorio');
+    var laboratorioPreferencial = button.getAttribute('data-laboratorio-preferencial');
+    var software = button.getAttribute('data-software');
+
+    document.querySelector('input[name="name"]').value = name;
+    document.querySelector('input[name="email"]').value = email;
+    document.querySelector('input[name="obrigatorio"]').checked = laboratorioObrigatorio == 1;
+    document.querySelector('input[name="preferencial"]').checked = laboratorioPreferencial == 1;
+    document.querySelector('input[name="software"]').value = software;
+}
+    </script>
 @endsection

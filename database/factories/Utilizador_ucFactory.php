@@ -19,8 +19,10 @@ class Utilizador_ucFactory extends Factory
     public function definition(): array
     {
         return [
-            //
-           'numeroFuncionario'=>User::all()->random()->numeroFuncionario,
+
+           'numeroFuncionario'=>User::where('tipoUtilizador', 'docente')
+           ->orWhere('tipoUtilizador', 'ambos')
+           ->get()->random()->numeroFuncionario,
            'codigoUC'=>UnidadeCurricular::all()->random()->codigo,
            'percentagem'=>fake()->paragraph(),
            'docenteresponsavel'=>fake()->boolean()

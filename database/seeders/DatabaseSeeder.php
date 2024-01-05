@@ -19,29 +19,32 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        //Users
         $this->call([UsersTableSeeder::class]);
 
+        //Unidades Curriculares
         UnidadeCurricularFactory::new()->count(10)->create();
-        for ($i=0; $i < 5; $i++) {
+
+        //Utilizador_uc
+        for ($i = 0; $i < 5; $i++) {
             try {
                 Utilizador_ucFactory::new()->create();
             } catch (QueryException $e) {
-
             }
         }
-        
-           SalaFactory::new()->count(5)->create();
-            $this->call([Bloco::class]);
 
+        //Salas
+        SalaFactory::new()->count(5)->create();
 
-            for ($i=0; $i < 12; $i++) {
-                try {
-                   RestricoesFactory::new()->create();
-                } catch (QueryException $e) {
+        //Blocos
+        $this->call([Bloco::class]);
 
-                }
+        //Restricoes
+        for ($i = 0; $i < 12; $i++) {
+            try {
+                RestricoesFactory::new()->create();
+            } catch (QueryException $e) {
             }
-
-
+        }
     }
 }
