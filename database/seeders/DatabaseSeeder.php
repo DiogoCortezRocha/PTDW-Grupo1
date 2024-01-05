@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use Database\Factories\BlocoFactory;
 use Database\Factories\RestricoesFactory;
 use Database\Factories\SalaFactory;
 use Database\Factories\UnidadeCurricularFactory;
@@ -19,31 +18,32 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        //Users
         $this->call([UsersTableSeeder::class]);
 
-        \App\Models\User::factory(10)->create();
+        //Unidades Curriculares
+        UnidadeCurricularFactory::new()->count(10)->create();
 
-        // UnidadeCurricularFactory::new()->count(10)->create();
-        // for ($i=0; $i < 5; $i++) {
-        //     try {
-        //         Utilizador_ucFactory::new()->create();
-        //     } catch (QueryException $e) {
+        //Utilizador_uc
+        for ($i = 0; $i < 5; $i++) {
+            try {
+                Utilizador_ucFactory::new()->create();
+            } catch (QueryException $e) {
+            }
+        }
 
-        //     }
-        // }
-        
-        //    SalaFactory::new()->count(5)->create();
-        //     $this->call([Bloco::class]);
+        //Salas
+        SalaFactory::new()->count(5)->create();
 
+        //Blocos
+        $this->call([Bloco::class]);
 
-        //     for ($i=0; $i < 12; $i++) {
-        //         try {
-        //            RestricoesFactory::new()->create();
-        //         } catch (QueryException $e) {
-
-        //         }
-        //     }
-
-
+        //Restricoes
+        for ($i = 0; $i < 12; $i++) {
+            try {
+                RestricoesFactory::new()->create();
+            } catch (QueryException $e) {
+            }
+        }
     }
 }

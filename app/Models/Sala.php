@@ -68,6 +68,12 @@ class Sala extends Model
         return $this->belongsToMany(UnidadeCurricular::class,'Sala_UnidadeCurricular','codigoUC','numeroSala');
     }
 
+    //tipo de sala diferentes
+    public function tiposSalas()
+{
+    return  $this->select('tipo')->distinct()->pluck('tipo')->toArray();
 
+
+}
 
 }
