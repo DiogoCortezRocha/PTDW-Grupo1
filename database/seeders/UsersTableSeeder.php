@@ -27,21 +27,21 @@ class UsersTableSeeder extends Seeder
 */
 
         DB::table('users')->insert([
-            'numeroFuncionario' => fake()->unique()->numberBetween(),
+            'numeroFuncionario' => fake()->unique()->numberBetween(1,999999),
             'nome' => 'Diogo',
             'email' => 'diogo@ua.pt',
             'email_verified_at' => now(),
             'password' => Hash::make('1234'),
             'telefone' => '123456789',
             'acn'   => 'ola',
-            'tipoUtilizador' => 'Docente',
+            'tipoUtilizador' => 'docente',
 
         ]);
 
         DB::table('users')->insert([
-            'numeroFuncionario' => fake()->unique()->numberBetween(),
+            'numeroFuncionario' => fake()->unique()->numberBetween(1,999999),
             'nome' => 'Grupo1',
-            'email' => 'Grupo1@ua.pt',
+            'email' => 'grupo1@ua.pt',
             'email_verified_at' => now(),
             'password' => Hash::make('1234'),
             'telefone' => '123456789',
@@ -50,7 +50,7 @@ class UsersTableSeeder extends Seeder
 
         ]);
         DB::table('users')->insert([
-            'numeroFuncionario' => fake()->unique()->numberBetween(),
+            'numeroFuncionario' => fake()->unique()->numberBetween(1,999999),
             'nome' => 'tony',
             'email' => 'tony@ua.pt',
             'email_verified_at' => now(),
