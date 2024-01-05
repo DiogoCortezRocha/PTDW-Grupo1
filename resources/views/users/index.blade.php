@@ -26,60 +26,36 @@
                         <table class="table tablesorter " id="">
                             <thead class=" text-primary">
                                 <tr>
-                                    <th scope="col">Name</th>
+                                    <th scope="col">Número de funcionário</th>
+                                    <th scope="col">Nome</th>
                                     <th scope="col">Email</th>
-                                    <th scope="col">Creation Date</th>
-                                    <th>Tipo</th>
+                                    <th scope="col">Tipo</th>
                                     <th scope="col"></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>grupo1</td>
-                                    <td>
-                                        <a >grupo1@ua.com</a>
-                                    </td>
-                                    <td>25/02/2020 09:11</td>
-                                    <td>CH</td>
-                                    <td class="text-right">
-                                        <div class="dropdown">
-                                            <a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <i class="fas fa-ellipsis-v"></i>
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                                <a class="dropdown-item" href="#">Edit</a>
+                                @foreach ($users as $user)
+                                    <tr>
+                                        <td>{{$user->numeroFuncionario}}</td>
+                                        <td>{{$user->nome}}</td>
+                                        <td>{{$user->email}}</td>
+                                        <td>{{$user->tipoUtilizador}}</td>
+                                        <td class="text-right">
+                                            <div class="dropdown">
+                                                <a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
+                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <i class="fas fa-ellipsis-v"></i>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                                                    <a class="dropdown-item" href="#">Edit</a>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </td>
-                                </tr>
-
-
-
-                                <tr>
-                                    <td>maria</td>
-                                    <td>
-                                        <a >maria@ua.com</a>
-                                    </td>
-                                    <td>25/02/2020 09:11</td>
-                                    <td>Docente</td>
-                                    <td class="text-right">
-                                        <div class="dropdown">
-                                            <a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <i class="fas fa-ellipsis-v"></i>
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                                <a class="dropdown-item" href="#">Edit</a>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
-
                 </div>
 
                 <div class="card-footer py-4">
