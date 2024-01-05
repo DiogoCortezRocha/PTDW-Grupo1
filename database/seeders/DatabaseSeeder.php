@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use Database\Factories\BlocoFactory;
 use Database\Factories\RestricoesFactory;
 use Database\Factories\SalaFactory;
 use Database\Factories\UnidadeCurricularFactory;
@@ -36,7 +35,6 @@ class DatabaseSeeder extends Seeder
         //Salas
         SalaFactory::new()->count(5)->create();
 
-<<<<<<< HEAD
         //Blocos
         $this->call([Bloco::class]);
 
@@ -47,16 +45,5 @@ class DatabaseSeeder extends Seeder
             } catch (QueryException $e) {
             }
         }
-=======
-        //     for ($i=0; $i < 12; $i++) {
-        //         try {
-        //            RestricoesFactory::new()->create();
-        //         } catch (QueryException $e) {
-
-        //         }
-        //     }
-
-
->>>>>>> 22f688cf856339197d1a4953be1dc5b2a99a9a92
     }
 }
