@@ -21,26 +21,28 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([UsersTableSeeder::class]);
 
-        UnidadeCurricularFactory::new()->count(10)->create();
-        for ($i=0; $i < 5; $i++) {
-            try {
-                Utilizador_ucFactory::new()->create();
-            } catch (QueryException $e) {
+        \App\Models\User::factory(10)->create();
 
-            }
-        }
+        // UnidadeCurricularFactory::new()->count(10)->create();
+        // for ($i=0; $i < 5; $i++) {
+        //     try {
+        //         Utilizador_ucFactory::new()->create();
+        //     } catch (QueryException $e) {
+
+        //     }
+        // }
         
-           SalaFactory::new()->count(5)->create();
-            $this->call([Bloco::class]);
+        //    SalaFactory::new()->count(5)->create();
+        //     $this->call([Bloco::class]);
 
 
-            for ($i=0; $i < 12; $i++) {
-                try {
-                   RestricoesFactory::new()->create();
-                } catch (QueryException $e) {
+        //     for ($i=0; $i < 12; $i++) {
+        //         try {
+        //            RestricoesFactory::new()->create();
+        //         } catch (QueryException $e) {
 
-                }
-            }
+        //         }
+        //     }
 
 
     }
