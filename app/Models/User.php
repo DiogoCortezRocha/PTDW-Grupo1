@@ -8,6 +8,9 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+
+
 
 class User extends Authenticatable
 {
@@ -24,7 +27,7 @@ class User extends Authenticatable
      *
      * @var string
      */
-    protected $primaryKey = 'numeroFuncionario';
+    protected $primaryKey= 'numeroFuncionario';
 
      /**
      * The "type" of the auto-incrementing ID.
@@ -38,7 +41,7 @@ class User extends Authenticatable
      *
      * @var bool
      */
-    public $incrementing = true;
+    public $incrementing = false;
 
 
     /**
@@ -48,20 +51,6 @@ class User extends Authenticatable
      */
     public $timestamps = true;
 
-    /**
-     * The primary key associated with the table.
-     *
-     * @var string
-     */
-    protected $primaryKey = 'numeroFuncionario';
-
-    /**
-     * Indicates if the IDs are auto-incrementing.
-     *
-     * @var bool
-     */
-    public $incrementing = false;
-    
     /**
      * The attributes that are mass assignable.
      *
