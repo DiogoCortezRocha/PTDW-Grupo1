@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Http\Controllers\RestricaoController;
 
 class HomeController extends Controller
 {
@@ -21,6 +22,9 @@ class HomeController extends Controller
      */
     public function index()
     {
+        if (auth()->user()->tipoUtilizador == 'docente' || auth()->user()->tipoUtilizador == 'ambos')
+        return (new RestricaoController())->Index();
+        else if (auth()->user()->tipoUtilizador == 'comissaoHorarios')
         return view('dashboard');
     }
 }

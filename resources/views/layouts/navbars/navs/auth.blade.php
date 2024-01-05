@@ -17,7 +17,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navigation">
 
-            <img src="white/img/ua-logo.svg" alt="Icon" width="45px">
+            <img src="{{ asset('white/img/ua-logo.svg')}}" alt="Icon" width="45">
                 <div class="UA"> Universidade de Aveiro
                 </div>
                     <ul class="navbar-nav ml-auto">
