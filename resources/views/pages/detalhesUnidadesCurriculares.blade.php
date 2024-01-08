@@ -1,4 +1,4 @@
-@extends('layouts.app', ['page' => __('detalhesUnidadesCurricilares'), 'pageSlug' => 'detalhesDocente'])
+@extends('layouts.app', ['page' => __('detalhesUnidadesCurriculares'), 'pageSlug' => 'unidadesCurriculares'])
 
 @section('content')
    
@@ -34,20 +34,22 @@
 
             <div class="col-md-6">
                 <div class="form-group">
+                  @if (count($docentenaoresponsavel) > 0)   
                     <label><strong>{{ __('Docentes a lecionar a unidade curricular') }}</strong></label>
                     <ul>
                         @foreach ($docentenaoresponsavel as $numero)
                             <li>{{ $numero->nome }}</li>
                         @endforeach
                     </ul>
-
+                @endif
+                    @if (count($docenteresponsavel)>0)
                     <label><strong>{{ __('Docente responsável pela unidade curricular') }}</strong></label>
                     <ul>
                         @foreach ($docenteresponsavel as $numero)
                             <li>{{ $numero->nome }}</li>
                         @endforeach
                     </ul>
-                
+                @endif
                    
                 </div>
             </div>

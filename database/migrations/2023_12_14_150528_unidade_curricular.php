@@ -17,10 +17,10 @@ return new class extends Migration
             $table->string('name');
             $table->string('acn');
             $table->integer('horas');
-            $table->boolean('LaboratorioObrigatorio');
-            $table->boolean('LaboratorioPreferencial');
-            $table->string('software');
-            $table->string('salaAvaliacao');
+            $table->boolean('LaboratorioObrigatorio')->nullable();
+            $table->boolean('LaboratorioPreferencial')->nullable();
+            $table->string('software')->nullable();
+            $table->string('salaAvaliacao')->nullable();
             $table->primary('codigo');
         });
     }

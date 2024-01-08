@@ -20,9 +20,7 @@ class Utilizador_ucFactory extends Factory
     {
         return [
 
-           'numeroFuncionario'=>User::where('tipoUtilizador', 'docente')
-           ->orWhere('tipoUtilizador', 'ambos')
-           ->get()->random()->numeroFuncionario,
+           'numeroFuncionario'=>User::where('tipoUtilizador', 'docente')->orWhere('tipoUtilizador', 'ambos')->get()->random()->numeroFuncionario,
            'codigoUC'=>UnidadeCurricular::all()->random()->codigo,
            'percentagem'=>fake()->paragraph(),
            'docenteresponsavel'=>fake()->boolean()
