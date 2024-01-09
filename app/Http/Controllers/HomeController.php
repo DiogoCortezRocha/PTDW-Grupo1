@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Http\Controllers\RestricaoController;
+use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
@@ -20,11 +21,13 @@ class HomeController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function index()
+    public function index(Request $request)
     {
-        if (auth()->user()->tipoUtilizador == 'docente' || auth()->user()->tipoUtilizador == 'ambos')
+        $selection = $request->query('selection', 'docente');
+
+        if (auth()->user()->tipoUtilizador == 'docente' || (auth()->user()->tipoUtilizador == 'ambos' && $selection == 'docente'))
         return (new RestricaoController())->Index();
-        else if (auth()->user()->tipoUtilizador == 'comissaoHorarios')
+        else if (auth()->user()->tipoUtilizador == 'comissaoHorarios' || (auth()->user()->tipoUtilizador == 'ambos' && $selection == 'comissaoHorarios'))
         return view('dashboard');
     }
 }
