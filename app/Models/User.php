@@ -117,4 +117,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(Observacao::class, 'numeroFuncionario', 'numeroFuncionario');
     }
+    public function todosNumerosFuncionariosENomes()
+    {
+        return $this->select('numeroFuncionario', 'nome')->get();
+    }
+
 }

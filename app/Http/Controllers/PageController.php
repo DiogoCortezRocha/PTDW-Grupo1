@@ -14,6 +14,16 @@ class PageController extends Controller
         return view('pages.icons');
     }
 
+     /**
+     * Display pagian incial page
+     *
+     * @return \Illuminate\View\View
+     */
+    public function paginaInicial()
+    {
+        return view('dashboard');
+    }
+
     /**
      * Display maps page
      *

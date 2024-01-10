@@ -131,9 +131,13 @@
                             @include('alerts.feedback', ['field' => 'tipo'])
                         </div>
                     </div>
+
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-fill btn-primary">{{ __('Guardar') }}</button>
+                        <div class="text-right"> <!-- Alinhamento à direita -->
+                            <button type="submit" class="btn btn-primary">Guardar</button>
+                        </div>
                     </div>
+                   
                 </form>
 
             </div>

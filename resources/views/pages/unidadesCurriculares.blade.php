@@ -11,7 +11,7 @@
                         </div>
 
                         <div class="col-3 text-right">
-                            <a href="#" class="btn btn-sm btn-primary">
+                            <a onclick="window.location='{{ route('inserir_uc') }}'" class="btn btn-sm btn-primary">
                                 <div style="display: flex; flex-direction: column; align-items: center;">
                                     <span>Adicionar</span>
                                     <span>UC</span>

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Http\Controllers\Utilizador_UnidadeCurricular;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -72,7 +73,9 @@ class UnidadeCurricular extends Model
         return $this->belongsToMany(User::class,'Utilizador_UnidadeCurricular','numeroFuncionario','codigoUC');
     }
 
-
-
+    public function utilizadores()
+    {
+        return $this->hasMany(Utilizador_uc::class, 'codigoUC', 'codigo');
+    }
 
 }
