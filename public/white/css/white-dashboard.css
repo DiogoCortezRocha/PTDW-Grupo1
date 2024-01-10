@@ -17115,7 +17115,7 @@ Copyright (c) 2015 Daniel Eden
 }
 
 .white-content .card:not(.card-white) .card-header {
-  color: #222a42;
+  color: white;
 }
 
 .white-content .card:not(.card-white) .card-header a[data-toggle="collapse"] {
@@ -17984,4 +17984,12 @@ Copyright (c) 2015 Daniel Eden
     padding-right: 10%;
     padding-top: 1%;
     text-align: right;
+}
+
+.add-button {
+  border: none;
+  padding: 5px 10px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
 }
