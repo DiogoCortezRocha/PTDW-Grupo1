@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
     {
         //Users
         $this->call([UsersTableSeeder::class]);
+        \App\Models\User::factory(5)->create();
 
         //Unidades Curriculares
         UnidadeCurricularFactory::new()->count(10)->create();
