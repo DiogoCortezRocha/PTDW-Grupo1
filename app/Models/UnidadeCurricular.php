@@ -69,7 +69,7 @@ class UnidadeCurricular extends Model
      */
     public function users(): BelongsToMany
     {
-        return $this->belongsToMany(User::class,'Utilizador_UnidadeCurricular','numeroFuncionario','codigoUC');
+        return $this->belongsToMany(User::class,'Utilizador_UnidadeCurricular', 'codigoUC', 'numeroFuncionario');
     }
 
 

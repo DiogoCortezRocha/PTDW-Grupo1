@@ -4,12 +4,13 @@
     <div class="row">
 
         <div class="tab">
-            @foreach ($uc as $unidadeCurricular)
-                <button data-name="{{ $unidadeCurricular->name }}" data-email="{{ $unidadeCurricular->email }}"
-                        data-laboratorio-obrigatorio="{{ $unidadeCurricular->LaboratorioObrigatorio }}"
-                        data-laboratorio-preferencial="{{ $unidadeCurricular->LaboratorioPreferencial }}"
-                        data-software="{{ $unidadeCurricular->software }}"
-                        onclick="fillForm(this)">{{ $unidadeCurricular->name }}
+            @foreach ($ucs as $unidadeCurricular)
+                <button data-codigo="{{ $unidadeCurricular->codigo }}" data-name="{{ $unidadeCurricular->name }}"
+                    data-laboratorio-obrigatorio="{{ $unidadeCurricular->LaboratorioObrigatorio }}"
+                    data-laboratorio-preferencial="{{ $unidadeCurricular->LaboratorioPreferencial }}"
+                    data-userUcGroupByUc="{{ json_encode($userUcGroupByUc[$unidadeCurricular->codigo] ?? []) }}"
+                    data-software="{{ $unidadeCurricular->software }}"
+                    onclick="fillForm(this);">{{ $unidadeCurricular->name }}
                 </button>
             @endforeach
         </div>
@@ -23,7 +24,6 @@
                     <div class="card-body">
                         @csrf
                         @method('put')
-
                         @include('alerts.success')
 
                         <div class="row">
@@ -38,23 +38,21 @@
                             <div class="col-md-6">
                                 <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
                                     <label>{{ __('Docente responsável') }}</label>
-                                    <input type="email" name="email"
+                                    <input type="text" name="docenteResponsavel"
                                         class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
-                                        placeholder="{{ __('Email address') }}"
+                                        placeholder="{{ __('Não têm docente Responsável') }}"
                                         value="{{ old('email', auth()->user()->email) }}">
                                     @include('alerts.feedback', ['field' => 'email'])
                                 </div>
                             </div>
                         </div>
-
-
-                        <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
+                        <div id="docentes-div" class="form-group{{ $errors->has('docentes') ? ' has-danger' : '' }}">
                             <label>{{ __('Outros docentes') }}</label>
-                            <input type="email" name="email"
-                                class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}">
-                            @include('alerts.feedback', ['field' => 'email'])
+                            <ul id="docentes-list">
+                                <!-- Os docentes serão adicionados aqui pelo JavaScript -->
+                            </ul>
+                            @include('alerts.feedback', ['field' => 'docentes'])
                         </div>
-
                         <div class="row">
                             <div class="col-md-3">
                                 <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
@@ -117,7 +115,7 @@
                         <div class="form-group{{ $errors->has('software') ? ' has-danger' : '' }}">
                             <label>{{ __('Software necessário(nome,fabricante,versão,sistema operativo)') }}</label>
                             <input type="text" name="software"
-                                   class="form-control{{ $errors->has('software') ? ' is-invalid' : '' }}">
+                                class="form-control{{ $errors->has('software') ? ' is-invalid' : '' }}">
                             @include('alerts.feedback', ['field' => 'software'])
                         </div>
 
@@ -137,7 +135,7 @@
                             <button type="submit" class="btn btn-primary">Guardar</button>
                         </div>
                     </div>
-                   
+
                 </form>
 
             </div>
@@ -188,20 +186,94 @@
             border: 1px solid #ccc;
             border-top: none;
         }
+
+        .tab button.selected {
+            background-color: #e7e9eb;
+            /* Substitua #your-color pela cor que você deseja */
+        }
     </style>
     <script>
-      function fillForm(button) {
-    var name = button.getAttribute('data-name');
-    var email = button.getAttribute('data-email');
-    var laboratorioObrigatorio = button.getAttribute('data-laboratorio-obrigatorio');
-    var laboratorioPreferencial = button.getAttribute('data-laboratorio-preferencial');
-    var software = button.getAttribute('data-software');
+        function fillForm(button) {
+            var name = button.getAttribute('data-name');
+            var laboratorioObrigatorio = button.getAttribute('data-laboratorio-obrigatorio');
+            var laboratorioPreferencial = button.getAttribute('data-laboratorio-preferencial');
+            var software = button.getAttribute('data-software');
+            var codigoUc = button.getAttribute('data-codigo');
 
-    document.querySelector('input[name="name"]').value = name;
-    document.querySelector('input[name="email"]').value = email;
-    document.querySelector('input[name="obrigatorio"]').checked = laboratorioObrigatorio == 1;
-    document.querySelector('input[name="preferencial"]').checked = laboratorioPreferencial == 1;
-    document.querySelector('input[name="software"]').value = software;
-}
+            var userUcGroupByUc = JSON.parse(button.getAttribute('data-userUcGroupByUc'));
+
+            console.log(userUcGroupByUc);
+            document.querySelector('input[name="name"]').value = name;
+            document.querySelector('input[name="obrigatorio"]').checked = laboratorioObrigatorio == 1;
+            document.querySelector('input[name="preferencial"]').checked = laboratorioPreferencial == 1;
+            document.querySelector('input[name="software"]').value = software;
+
+
+            var docenteResponsavelInput = document.querySelector('input[name="docenteResponsavel"]');
+            var docentesList = document.getElementById('docentes-list');
+            docentesList.innerHTML = ''; // Limpa a lista de docentes
+
+            var docenteResponsavel = '';
+            var outrosDocentes = [];
+            var docentes = @json($docentes);
+            var docentesMap = {};
+docentes.forEach(function(docente) {
+    docentesMap[docente.numeroFuncionario] = docente.nome;
+});
+
+            userUcGroupByUc.forEach(function(registro) {
+                if (registro.docenteresponsavel == true) {
+                    docenteResponsavel = registro.numeroFuncionario;
+                    docenteResponsavelInput.value = docentesMap[docenteResponsavel];
+                }
+                if (Number(codigoUc) === Number(registro.codigoUC)) {
+                    outrosDocentes.push(registro.numeroFuncionario);
+                }
+            });
+
+            // Adiciona outros docentes à lista, excluindo o docente responsável
+            if (docenteResponsavel === '') {
+                docenteResponsavelInput.value = '';
+                outrosDocentes = userUcGroupByUc.map(registro => registro.numeroFuncionario);
+            }
+
+
+            outrosDocentes.forEach(function(outroDocente) {
+
+                if (outroDocente !== docenteResponsavel) {
+                    var listItem = document.createElement('li');
+                    listItem.textContent = docentesMap[outroDocente];
+                    docentesList.appendChild(listItem);
+                }
+            });
+
+            var docentesDiv = document.getElementById('docentes-div');
+            if (docentesList.childElementCount === 0) {
+                docentesDiv.style.display = 'none';
+            } else {
+                docentesDiv.style.display = 'block';
+            }
+        }
+
+
+        window.onload = function() {
+            // Seleciona o primeiro botão quando a página é carregada
+            var firstButton = document.querySelector('.tab button');
+            firstButton.click();
+            firstButton.classList.add('selected');
+            // Adiciona a classe 'selected' ao botão quando ele é clicado
+            var buttons = document.querySelectorAll('.tab button');
+            buttons.forEach(function(button) {
+                button.addEventListener('click', function() {
+                    // Remove a classe 'selected' de todos os botões
+                    buttons.forEach(function(btn) {
+                        btn.classList.remove('selected');
+                    });
+
+                    // Adiciona a classe 'selected' ao botão clicado
+                    this.classList.add('selected');
+                });
+            });
+        }
     </script>
 @endsection
