@@ -32,6 +32,7 @@ class Utilizador_UnidadeCurricular extends Controller
 
         $userUcGroupByUc = $this->getuserUcGroupByUc();
 
+
         return view('pages.formulario', compact('ucs', 'salas', 'tiposSalas', 'utilizadoruc', 'docentes', 'userUcGroupByUc'));
     }
 

@@ -9,6 +9,7 @@
                     data-laboratorio-obrigatorio="{{ $unidadeCurricular->LaboratorioObrigatorio }}"
                     data-laboratorio-preferencial="{{ $unidadeCurricular->LaboratorioPreferencial }}"
                     data-userUcGroupByUc="{{ json_encode($userUcGroupByUc[$unidadeCurricular->codigo] ?? []) }}"
+                    data-salaAvaliacao="{{ $unidadeCurricular->salaAvaliacao }}"
                     data-software="{{ $unidadeCurricular->software }}"
                     onclick="fillForm(this);">{{ $unidadeCurricular->name }}
                 </button>
@@ -79,6 +80,7 @@
                                     <label>{{ __('Laboratorios possiveis') }}</label>
                                     <select name="sala"
                                         class="form-control{{ $errors->has('sala') ? ' is-invalid' : '' }}">
+                                        <option value="">{{ __('Nenhum') }}</option>
                                         @foreach ($salas as $sala)
                                             <option value="{{ $sala->numero }}">{{ $sala->numero }}</option>
                                         @endforeach
@@ -91,6 +93,7 @@
                                     <label>{{ __('Laboratorios possiveis') }}</label>
                                     <select name="sala"
                                         class="form-control{{ $errors->has('sala') ? ' is-invalid' : '' }}">
+                                        <option value="">{{ __('Nenhum') }}</option>
                                         @foreach ($salas as $sala)
                                             <option value="{{ $sala->numero }}">{{ $sala->numero }}</option>
                                         @endforeach
@@ -103,6 +106,7 @@
                                     <label>{{ __('Laboratorios possiveis') }}</label>
                                     <select name="sala"
                                         class="form-control{{ $errors->has('sala') ? ' is-invalid' : '' }}">
+                                        <option value="">{{ __('Nenhum') }}</option>
                                         @foreach ($salas as $sala)
                                             <option value="{{ $sala->numero }}">{{ $sala->numero }}</option>
                                         @endforeach
@@ -122,6 +126,7 @@
                         <div class="form-group{{ $errors->has('tipo') ? ' has-danger' : '' }}">
                             <label>{{ __('Sala para Avaliação') }}</label>
                             <select name="tipo" class="form-control{{ $errors->has('tipo') ? ' is-invalid' : '' }}">
+
                                 @foreach ($tiposSalas as $tipo)
                                     <option value="{{ $tipo }}">{{ $tipo }}</option>
                                 @endforeach
@@ -191,15 +196,20 @@
             background-color: #e7e9eb;
             /* Substitua #your-color pela cor que você deseja */
         }
+
+        form.readonly {
+            background-color: #f0f0f0;
+        }
     </style>
     <script>
         function fillForm(button) {
             var name = button.getAttribute('data-name');
+            var salaAvaliacao = button.getAttribute('data-salaAvaliacao');
             var laboratorioObrigatorio = button.getAttribute('data-laboratorio-obrigatorio');
             var laboratorioPreferencial = button.getAttribute('data-laboratorio-preferencial');
             var software = button.getAttribute('data-software');
             var codigoUc = button.getAttribute('data-codigo');
-
+            var authUserNumeroFuncionario = @json(auth()->user()->numeroFuncionario);
             var userUcGroupByUc = JSON.parse(button.getAttribute('data-userUcGroupByUc'));
 
             console.log(userUcGroupByUc);
@@ -208,6 +218,17 @@
             document.querySelector('input[name="preferencial"]').checked = laboratorioPreferencial == 1;
             document.querySelector('input[name="software"]').value = software;
 
+            // Obtenha o elemento select para tipos de salas
+            var tiposSalasSelect = document.querySelector('select[name="tipo"]');
+
+            // Crie um novo elemento de opção
+            var salaAvaliacaoOption = document.createElement('option');
+            salaAvaliacaoOption.text = salaAvaliacao;
+            salaAvaliacaoOption.value = salaAvaliacao;
+
+            // Adicione a nova opção ao início do select
+            tiposSalasSelect.insertBefore(salaAvaliacaoOption, tiposSalasSelect.firstChild);
+            tiposSalasSelect.value = salaAvaliacao;
 
             var docenteResponsavelInput = document.querySelector('input[name="docenteResponsavel"]');
             var docentesList = document.getElementById('docentes-list');
@@ -217,9 +238,10 @@
             var outrosDocentes = [];
             var docentes = @json($docentes);
             var docentesMap = {};
-docentes.forEach(function(docente) {
-    docentesMap[docente.numeroFuncionario] = docente.nome;
-});
+            docentes.forEach(function(docente) {
+                docentesMap[docente.numeroFuncionario] = docente.nome;
+            });
+
 
             userUcGroupByUc.forEach(function(registro) {
                 if (registro.docenteresponsavel == true) {
@@ -252,6 +274,21 @@ docentes.forEach(function(docente) {
                 docentesDiv.style.display = 'none';
             } else {
                 docentesDiv.style.display = 'block';
+            }
+
+
+            if (docenteResponsavel === authUserNumeroFuncionario) {
+                // tornar o formulário editável
+                document.querySelector('form').classList.remove('readonly');
+                document.querySelectorAll('input, select, button[type="submit"]').forEach(function(element) {
+                    element.removeAttribute('disabled');
+                });
+            } else {
+                // tornar o formulário somente leitura
+                document.querySelector('form').classList.add('readonly');
+                document.querySelectorAll('input, select, button[type="submit"]').forEach(function(element) {
+                    element.setAttribute('disabled', 'disabled');
+                });
             }
         }
 
