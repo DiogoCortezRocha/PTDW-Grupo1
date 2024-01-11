@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\UnidadeCurricular;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class UnidadeCurricularController extends Controller
@@ -33,17 +34,24 @@ public function show($codigo)
 {
     // Encontrar a Unidade Curricular com o código fornecido
     $uc = UnidadeCurricular::where('codigo', $codigo)->first();
-   
+
     // Verificar se a UC foi encontrada
     if ($uc) {
-        // Redirecionar para a rota 'funcionario' com todas as informações da UC
-        return redirect()->route('funcionario', ['codigo' => $uc]);
+        // Carregar automaticamente os utilizadores associados usando o relacionamento
+        $uc->load('utilizadores');
+
+        // Acessar as informações sobre uma UC e os números de funcionário associados
+        $utilizadoruc = $uc->utilizadores;
+        $funcionarios = User::whereIn('numeroFuncionario', $utilizadoruc->pluck('numeroFuncionario'))->get();
+        $docentenaoresponsavel = User::whereIn('numeroFuncionario', $utilizadoruc->where('docenteresponsavel', 0)->pluck('numeroFuncionario'))->get();
+        $docenteresponsavel = User::whereIn('numeroFuncionario', $utilizadoruc->where('docenteresponsavel', 1)->pluck('numeroFuncionario'))->get();
+        $adicionadocentes=$this->docentes();
+        return view('pages.detalhesUnidadesCurriculares', compact('utilizadoruc', 'uc', 'funcionarios', 'docenteresponsavel', 'docentenaoresponsavel','adicionadocentes'));
     } else {
         // Tratar caso a UC não seja encontrada
         // Por exemplo, redirecionar de volta à página anterior ou para uma página de erro
         return redirect()->back();
     }
-    
 }
 
 //TODO: Redirecionar para outra view
@@ -85,5 +93,11 @@ public function show($codigo)
     // Redirecionamento com mensagem de sucesso
     return redirect()->back()->with('success', 'Unidade curricular criada com sucesso!');
 }
+public function docentes()
+    {
+        $docente =new User;
+        $numerosENomes = $docente->todosNumerosFuncionariosENomes();
+        return ['numerosENomes' => $numerosENomes];
+    }
 }
 

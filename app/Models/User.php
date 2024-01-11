@@ -51,20 +51,7 @@ class User extends Authenticatable
      */
     public $timestamps = true;
 
-    /**
-     * The primary key associated with the table.
-     *
-     * @var string
-     */
-    //protected $primaryKey = 'numeroFuncionario';
-
-    /**
-     * Indicates if the IDs are auto-incrementing.
-     *
-     * @var bool
-     */
-    //public $incrementing = false;
-    
+     
     /**
      * The attributes that are mass assignable.
      *
@@ -130,4 +117,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(Observacao::class, 'numeroFuncionario', 'numeroFuncionario');
     }
+    public function todosNumerosFuncionariosENomes()
+    {
+        return $this->select('numeroFuncionario', 'nome')->get();
+    }
+
 }
