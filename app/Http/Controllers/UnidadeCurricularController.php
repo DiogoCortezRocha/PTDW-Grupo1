@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\UnidadeCurricular;
 use App\Models\User;
+use App\Models\Utilizador_uc;
 use Illuminate\Http\Request;
 
 class UnidadeCurricularController extends Controller
@@ -99,5 +100,29 @@ public function docentes()
         $numerosENomes = $docente->todosNumerosFuncionariosENomes();
         return ['numerosENomes' => $numerosENomes];
     }
+    public function adiciona_docenteresponsavel_uc(Request $request, $codigo)
+{
+    $request->validate([
+        'docentes' => 'required',
+    ]);
+
+    // Criar uma nova instância do modelo UtilizadorUc
+    $utilizadorUc = new Utilizador_uc;
+
+    // Atribuir os valores aos campos do modelo
+    $utilizadorUc->numeroFuncionario = $request->input('docentes');
+    $utilizadorUc->codigoUC = $codigo; // Usar o código recebido na rota
+    $utilizadorUc->docenteresponsavel = 1;
+
+    // Salvar os dados no banco de dados
+    $utilizadorUc->save();
+
+    // Redirecionar para a rota desejada ou fazer algo mais, se necessário
+    return redirect()->route('detalhesuc', ['codigo' => $codigo])->with('success', 'Docente responsável adicionado com sucesso!');
+
+ } 
+ // Exemplo de método de exclusão em seu controlador
+
+
 }
 

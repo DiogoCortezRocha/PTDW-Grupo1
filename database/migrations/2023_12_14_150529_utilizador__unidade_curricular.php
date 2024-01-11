@@ -15,7 +15,7 @@ return new class extends Migration
         Schema::create('Utilizador_UnidadeCurricular', function (Blueprint $table) {
             $table->unsignedBigInteger('numeroFuncionario');
             $table->integer('codigoUC');
-            $table->string('percentagem');
+            $table->string('percentagem')->nullable();;
             $table->boolean('docenteresponsavel');
             $table->timestamps();
             $table->foreign('codigoUC')->references('codigo')->on('UnidadeCurricular');
