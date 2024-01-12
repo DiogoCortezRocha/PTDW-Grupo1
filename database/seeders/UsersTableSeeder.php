@@ -78,7 +78,7 @@ class UsersTableSeeder extends Seeder
             'email' => 'ch@ua.pt',
             'email_verified_at' => now(),
             'password' => Hash::make('1234'),
-            'telefone' => 'S123456789',
+            'telefone' => '123456789',
             'acn'   => 'ola',
             'tipoUtilizador' => 'comissaoHorarios',
 

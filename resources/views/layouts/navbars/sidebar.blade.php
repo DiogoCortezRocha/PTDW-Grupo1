@@ -36,10 +36,10 @@
                     </a>
                 </li>
 
-                <li class="comissaoHorarios-item @if ($pageSlug == 'tables') active @endif">
-                    <a href="{{ route('pages.tables') }}">
+                <li class="comissaoHorarios-item @if ($pageSlug == 'docentes') active @endif">
+                    <a href="{{ route('pages.docentes') }}">
                         <i class="tim-icons icon-bullet-list-67"></i>
-                        <p>{{ __('Docentes') }}</p>
+                        <p>{{ __('docentes') }}</p>
                     </a>
                 </li>
                 <li class="comissaoHorarios-item @if ($pageSlug == 'unidadesCurriculares') active @endif">

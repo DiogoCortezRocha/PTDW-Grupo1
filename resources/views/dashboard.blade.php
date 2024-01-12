@@ -43,6 +43,37 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-header">
+                    <h2 class="card-title"><strong>Docentes que não submeteram restrição</strong></h2>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table tablesorter">
+                            <thead class="text-primary">
+                                <tr>
+                                    <th>Nome</th>
+                                    <th>Email</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @forelse ($utilizadores->where('restricaoSubmetida', false) as $utilizador)
+                                <tr onclick="window.location='{{ route('pages.detalhesDocente', $utilizador->id) }}';" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f5f5f5';" onmouseout="this.style.backgroundColor='';">
+
+                                        <td>{{ $utilizador->nome }}</td>
+                                        <td>{{ $utilizador->email }}</td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="2">Não existem docentes que não submeteram restrição.</td>
+                                    </tr>
+                                @endforelse
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
                     <h2 class="card-title"><strong>Docentes que submeteram restrição</strong></h2>
                 </div>
                 <div class="card-body">
@@ -56,7 +87,8 @@
                             </thead>
                             <tbody>
                                 @forelse ($utilizadores->where('restricaoSubmetida', true) as $utilizador)
-                                    <tr>
+                                <tr onclick="window.location='{{ route('pages.detalhesDocente', $utilizador->id) }}';" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f5f5f5';" onmouseout="this.style.backgroundColor='';">
+
                                         <td>{{ $utilizador->nome }}</td>
                                         <td>{{ $utilizador->email }}</td>
                                     </tr>
@@ -71,35 +103,7 @@
                 </div>
             </div>
 
-            <div class="card">
-                <div class="card-header">
-                    <h2 class="card-title"><strong>Docentes que não submeteram restrição</strong></h2>
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table tablesorter">
-                            <thead class="text-primary">
-                                <tr>
-                                    <th>Nome</th>
-                                    <th>Email</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @forelse ($utilizadores->where('restricaoSubmetida', false) as $utilizador)
-                                    <tr>
-                                        <td>{{ $utilizador->nome }}</td>
-                                        <td>{{ $utilizador->email }}</td>
-                                    </tr>
-                                @empty
-                                    <tr>
-                                        <td colspan="2">Não existem docentes que não submeteram restrição.</td>
-                                    </tr>
-                                @endforelse
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
+
         </div>
 
         <div class="col-md-6">
