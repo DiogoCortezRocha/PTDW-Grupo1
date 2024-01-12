@@ -59,3 +59,5 @@ Route::get('/inserir_uc',[App\Http\Controllers\UnidadeCurricularController::clas
 Route::post('inserir_uc/adicionar', 'App\Http\Controllers\UnidadeCurricularController@store')->name('inserir_uc.store');
 Route::get('/dashboard', 'App\Http\Controllers\HomeController@index')->name('dashboard');
 Route::get('/PaginaInical', 'App\Http\Controllers\PageController@paginaInicial')->name('dashboardPage');
+
+Route::put('/formularioEdit/{id}', 'App\Http\Controllers\UnidadeCurricularController@update')->name('formularioEdit');

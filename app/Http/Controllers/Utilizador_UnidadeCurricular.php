@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\UnidadeCurricular;
-use App\Models\User;
 use App\Models\Utilizador_uc;
 use App\Models\Sala;
 
@@ -50,4 +49,6 @@ class Utilizador_UnidadeCurricular extends Controller
         $userUcGroupByUc = $user_ucInstance->get();
         return $userUcGroupByUc->groupBy('codigoUC');
     }
+
+
 }
