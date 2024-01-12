@@ -17993,3 +17993,10 @@ Copyright (c) 2015 Daniel Eden
   cursor: pointer;
   border-radius: 5px;
 }
+.add-button2 {
+  border: none;
+  padding: 1px 5px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+}

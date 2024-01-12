@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\UnidadeCurricular;
 use App\Models\Utilizador_uc;
 use App\Models\Sala;
+use Illuminate\Support\Facades\DB;
 
 class Utilizador_UnidadeCurricular extends Controller
 {
@@ -49,6 +50,23 @@ class Utilizador_UnidadeCurricular extends Controller
         $userUcGroupByUc = $user_ucInstance->get();
         return $userUcGroupByUc->groupBy('codigoUC');
     }
+    public function destroy_docente_responsavel($numeroFuncionario, $codigoUC)
+    {
+        try {
+            // Execute uma instrução SQL para excluir o registro
+            $deleted = DB::table('Utilizador_UnidadeCurricular')
+                ->where('numeroFuncionario', $numeroFuncionario)
+                ->where('codigoUC', $codigoUC)
+                ->delete();
 
+            // Verifique se algum registro foi excluído
+            if (!$deleted) {
+                return redirect()->route('detalhesuc', ['codigo' => $codigoUC])->with('error', 'Docente responsável não encontrado');
+            }
 
+            return redirect()->route('detalhesuc', ['codigo' => $codigoUC])->with('success', 'Docente responsável excluído com sucesso');
+        } catch (\Exception $e) {
+            return redirect()->route('detalhesuc', ['codigo' => $codigoUC])->with('error', 'Erro ao excluir docente responsável: ' . $e->getMessage());
+        }
+    }
 }
