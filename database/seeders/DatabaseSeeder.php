@@ -2,11 +2,6 @@
 
 namespace Database\Seeders;
 
-<<<<<<< HEAD
-=======
-use Database\Factories\BlocoFactory;
-use Database\Factories\cursoFactory;
->>>>>>> 807270b8f850ae6cd1a82e981c19e5fc28bd6b67
 use Database\Factories\RestricoesFactory;
 use Database\Factories\SalaFactory;
 use Database\Factories\UnidadeCurricularFactory;
@@ -25,13 +20,9 @@ class DatabaseSeeder extends Seeder
     {
         //Users
         $this->call([UsersTableSeeder::class]);
-<<<<<<< HEAD
         \App\Models\User::factory(5)->create();
 
         //Unidades Curriculares
-=======
-        //cursoFactory::new()->count(10)->create();
->>>>>>> 807270b8f850ae6cd1a82e981c19e5fc28bd6b67
         UnidadeCurricularFactory::new()->count(10)->create();
 
         //Utilizador_uc
