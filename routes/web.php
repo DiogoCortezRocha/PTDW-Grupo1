@@ -59,3 +59,5 @@ Route::get('/inserir_uc',[App\Http\Controllers\UnidadeCurricularController::clas
 Route::post('inserir_uc/adicionar', 'App\Http\Controllers\UnidadeCurricularController@store')->name('inserir_uc.store');
 Route::get('/dashboard', 'App\Http\Controllers\HomeController@index')->name('dashboard');
 Route::get('/PaginaInical', 'App\Http\Controllers\PageController@paginaInicial')->name('dashboardPage');
+Route::get('/import', [App\Http\Controllers\UserController::class,'import']);
+Route::post('/import', [App\Http\Controllers\UserController::class,'storeImport']);

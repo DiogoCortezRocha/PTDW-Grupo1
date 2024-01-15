@@ -1,0 +1,2 @@
+composer require maatwebsite/excel:^3.1.51 -W --ignore-platform-req=ext-zip
+php artisan vendor:publish --provider="Maatwebsite\Excel\ExcelServiceProvider"
