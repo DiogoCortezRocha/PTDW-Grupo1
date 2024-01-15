@@ -21,7 +21,7 @@ class Bloco extends Seeder
 
         foreach ($partesDoDia as $parteDoDia) {
             foreach ($diasDaSemana as $diaDaSemana) {
-                DB::table('bloco')->insert([
+                DB::table('Bloco')->insert([
                     'partDoDia' => $parteDoDia,
                     'diaDaSemana' => $diaDaSemana,
                 ]);

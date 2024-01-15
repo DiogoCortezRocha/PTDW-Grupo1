@@ -1,4 +1,4 @@
-@extends('layouts.app', ['page' => __('Tables'), 'pageSlug' => 'tables'])
+@extends('layouts.app', ['page' => __('docentes'), 'pageSlug' => 'docentes'])
 
 @section('content')
     <div class="row">
@@ -42,57 +42,34 @@
                                         Email
                                     </th>
                                     <th class="text-center">
-                                        Observação
+                                        ACN
                                     </th>
                                     <th class="text-center">
-                                        Estado
+                                        Restrição Horário
                                     </th>
 
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr onclick="window.location='{{ route('pages.detalhesDocente') }}';" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f5f5f5';" onmouseout="this.style.backgroundColor='';">
-
-                                    <td>
-                                        123444
-                                    </td>
-                                    <td>
-                                        Diogo
-                                    </td>
-                                    <td>
-                                        diogo@ua.pt
-                                    </td>
-                                    <td class="text-center">
-                                        So tem 2 blocos disponíveis
-                                    </td>
-                                    <td class="text-center">
-                                        Enviado
-                                    </td>
-
-
-                                </tr>
-
-                                <tr onclick="window.location='{{ route('pages.detalhesDocente') }}';" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f5f5f5';" onmouseout="this.style.backgroundColor='';">
-
-                                    <td>
-                                        123445
-                                    </td>
-                                    <td>
-                                        Manel
-                                    </td>
-                                    <td>
-                                        Manel@ua.pt
-                                    </td>
-                                    <td class="text-center">
-
-                                    </td>
-                                    <td class="text-center">
-                                        Por Enviar
-                                    </td>
-
-
-                                </tr>
-
+                                @foreach ($users as $utilizador)
+                                    <tr onclick="window.location='{{ route('pages.detalhesDocente') }}';" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f5f5f5';" onmouseout="this.style.backgroundColor='';">
+                                        <td>
+                                            {{ $utilizador->numeroFuncionario }}
+                                        </td>
+                                        <td>
+                                            {{ $utilizador->nome }}
+                                        </td>
+                                        <td>
+                                            {{ $utilizador->email }}
+                                        </td>
+                                        <td class="text-center">
+                                            {{ $utilizador->acn }}
+                                        </td>
+                                        <td class="text-center">
+                                            {{ $utilizador->restricaoSubmetida ? 'Enviado' : 'Não Enviado' }}
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

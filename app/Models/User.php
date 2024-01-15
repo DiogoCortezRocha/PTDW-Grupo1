@@ -119,7 +119,7 @@ class User extends Authenticatable
     }
     public function todosNumerosFuncionariosENomes()
     {
-        return $this->select('numeroFuncionario', 'nome')->get();
+        return $this->select('numeroFuncionario', 'nome','tipoUtilizador')->get();
     }
 
 }

@@ -10,4 +10,7 @@ class Utilizador_uc extends Model
     use HasFactory;
     protected $table = "Utilizador_UnidadeCurricular";
     public $timestamps = true;
+    protected $primaryKey = ['numeroFuncionario', 'codigoUC'];
+    public $incrementing = false;
+    protected $fillable = ['numeroFuncionario', 'codigoUC', 'percentagem','docenteresponsavel','created_at','updated_at'];
 }

@@ -21,7 +21,13 @@ class UserController extends Controller
     {
         $users = User::all();
         return view('users.index', ['users' => $model->paginate(15)]);
-        
+
+    }
+
+    public function IndexDocentes()
+    {
+        $users  = User::whereIn('tipoUtilizador', ['docente', 'ambos'])->get();
+        return view('pages.docentes', compact('users'));
     }
 
     public function import() {

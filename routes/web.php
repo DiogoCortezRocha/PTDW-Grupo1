@@ -1,6 +1,7 @@
 <?php
 
-
+use App\Http\Controllers\UnidadeCurricularController;
+use App\Models\UnidadeCurricular;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -33,7 +34,7 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('icons', ['as' => 'pages.icons', 'uses' => 'App\Http\Controllers\PageController@icons']);
 		Route::get('notifications', ['as' => 'pages.notifications', 'uses' => 'App\Http\Controllers\PageController@notifications']);
 		Route::get('rtl', ['as' => 'pages.rtl', 'uses' => 'App\Http\Controllers\PageController@rtl']);
-		Route::get('tables', ['as' => 'pages.tables', 'uses' => 'App\Http\Controllers\PageController@tables']);
+
 		Route::get('typography', ['as' => 'pages.typography', 'uses' => 'App\Http\Controllers\PageController@typography']);
 		Route::get('upgrade', ['as' => 'pages.upgrade', 'uses' => 'App\Http\Controllers\PageController@upgrade']);
 		Route::get('formulario', ['as' => 'pages.formulario', 'uses' => 'App\Http\Controllers\Utilizador_UnidadeCurricular@Index']);
@@ -42,6 +43,7 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('detalhesUnidadesCurriculares', ['as' => 'pages.detalhesUnidadesCurriculares', 'uses' => 'App\Http\Controllers\PageController@detalhesUnidadesCurriculares']);
         Route::get('unidadesCurriculares', ['as' => 'pages.unidadesCurriculares', 'uses' => 'App\Http\Controllers\UnidadeCurricularController@Index']);
         Route::get('ciclosEstudos', ['as' => 'pages.ciclosEstudos', 'uses' => 'App\Http\Controllers\PageController@ciclosEstudos']);
+        Route::get('docentes', ['as' => 'pages.docentes', 'uses' => 'App\Http\Controllers\UserController@IndexDocentes']);
 
     });
 
@@ -53,6 +55,8 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 Route::get('detalhesUnidadesCurriculares/{codigo}',[App\Http\Controllers\UnidadeCurricularController::class,'show'])->name('detalhesuc');
+Route::post('/detalhesUnidadesCurriculares/{codigo}/inserir-docenteresponsavel', [App\Http\Controllers\UnidadeCurricularController::class, 'adiciona_docenteresponsavel_uc'])->name('inserirdocenteresponsavel.store');
+Route::delete('/detalhesUnidadesCurriculares/{numeroFuncionario}/{codigoUC}', [App\Http\Controllers\Utilizador_UnidadeCurricular::class,'destroy_docente_responsavel'])->name('eleminadocenteresponsavel');
 //Route::get('detalhesUnidadesCurricularesfuncionarios/{codigo}',[App\Http\Controllers\Utilizador_UnidadeCurricular::class,'show'])->name('funcionario');
 Route::post('/restricoes', 'App\Http\Controllers\RestricaoController@store')->name('restricoes.store');
 Route::get('/inserir_uc',[App\Http\Controllers\UnidadeCurricularController::class,'inserir_uc'])->name('inserir_uc');
@@ -61,3 +65,5 @@ Route::get('/dashboard', 'App\Http\Controllers\HomeController@index')->name('das
 Route::get('/PaginaInical', 'App\Http\Controllers\PageController@paginaInicial')->name('dashboardPage');
 Route::get('/import', [App\Http\Controllers\UserController::class,'import']);
 Route::post('/import', [App\Http\Controllers\UserController::class,'storeImport']);
+
+Route::put('/formularioEdit/{id}', 'App\Http\Controllers\UnidadeCurricularController@update')->name('formularioEdit');

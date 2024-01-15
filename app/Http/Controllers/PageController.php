@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\User;
 
 class PageController extends Controller
 {
@@ -21,7 +22,8 @@ class PageController extends Controller
      */
     public function paginaInicial()
     {
-        return view('dashboard');
+        $utilizadores = User::whereIn('tipoUtilizador', ['docente', 'ambos'])->get();
+        return view('dashboard', ['utilizadores' => $utilizadores]);
     }
 
     /**
@@ -39,9 +41,10 @@ class PageController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function tables()
+    public function docentes()
     {
-        return view('pages.tables');
+
+        return view('pages.docentes');
     }
 
     /**

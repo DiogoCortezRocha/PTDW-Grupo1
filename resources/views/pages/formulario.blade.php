@@ -21,7 +21,7 @@
         <div class="col-md-12">
             <div class="card">
 
-                <form method="post" action="{{ route('profile.update') }}" autocomplete="off">
+                <form id="myForm" method="post" action="{{ url('formularioEdit') }}">
                     <div class="card-body">
                         @csrf
                         @method('put')
@@ -143,10 +143,23 @@
 
                 </form>
 
+
+
             </div>
 
 
         </div>
+        @if (session('success'))
+            <div id="success-message" class="alert alert-success">
+                {{ session('success') }}
+            </div>
+            <script>
+                setTimeout(function() {
+                    const element = document.getElementById('success-message');
+                    element.style.display = 'none';
+                }, 5000);
+            </script>
+        @endif
 
     </div>
     <style>
@@ -202,6 +215,8 @@
         }
     </style>
     <script>
+        var originalAction = document.getElementById('myForm').action;
+
         function fillForm(button) {
             var name = button.getAttribute('data-name');
             var salaAvaliacao = button.getAttribute('data-salaAvaliacao');
@@ -217,7 +232,11 @@
             document.querySelector('input[name="obrigatorio"]').checked = laboratorioObrigatorio == 1;
             document.querySelector('input[name="preferencial"]').checked = laboratorioPreferencial == 1;
             document.querySelector('input[name="software"]').value = software;
+            // Reset a ação do formulário para a ação original
+            document.getElementById('myForm').action = originalAction;
 
+            // Adicione o novo codigoUc ao final da ação do formulário
+            document.getElementById('myForm').action += "/" + codigoUc;
             // Obtenha o elemento select para tipos de salas
             var tiposSalasSelect = document.querySelector('select[name="tipo"]');
 
