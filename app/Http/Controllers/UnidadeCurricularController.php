@@ -80,8 +80,11 @@ class UnidadeCurricularController extends Controller
             'acn' => 'required|string',
             'horas' => 'required|numeric',
         ]);
-
+        $exiteuc=UnidadeCurricular::where('codigo',$request->input('codigo'))->exists();
         // Criação de uma nova uc na base de dados
+        if($exiteuc){
+            return redirect()->route('inserir_uc')->with('error', 'Código unidade curricular já existente');
+        }
         $uc = new UnidadeCurricular;
         $uc->codigo = $request->codigo;
         $uc->name = $request->name;

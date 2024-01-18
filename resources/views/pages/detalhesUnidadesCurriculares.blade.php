@@ -27,7 +27,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label><strong>{{ __('Número de horas') }}</strong></label>
+                    <label><strong>{{ __('Número de horas semanais') }}</strong></label>
                     <p>{{ $uc->horas }} horas</p>
                 </div>
             </div>
