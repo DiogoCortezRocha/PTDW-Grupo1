@@ -76,19 +76,19 @@ class UnidadeCurricularController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'codigo' => 'required|string', // Adapte as regras conforme necessário
+            'codigo' => 'required|string', 
             'name' => 'required|string',
             'acn' => 'required|string',
             'horas' => 'required|numeric',
         ]);
 
-        // Criação de um novo perfil no banco de dados
+        // Criação de uma nova uc na base de dados
         $uc = new UnidadeCurricular;
         $uc->codigo = $request->codigo;
         $uc->name = $request->name;
         $uc->acn = $request->acn;
         $uc->horas = $request->horas;
-        // Adicione outros campos conforme necessário
+        
 
         $uc->save();
 
@@ -107,7 +107,7 @@ class UnidadeCurricularController extends Controller
             'docentes' => 'required',
         ]);
 
-        // Criar uma nova instância do modelo UtilizadorUc
+        // Criar uma nova instância do model Utilizador_Uc
         $utilizadorUc = new Utilizador_uc;
 
         // Atribuir os valores aos campos do modelo
@@ -115,13 +115,13 @@ class UnidadeCurricularController extends Controller
         $utilizadorUc->codigoUC = $codigo; // Usar o código recebido na rota
         $utilizadorUc->docenteresponsavel = 1;
 
-        // Salvar os dados no banco de dados
+        // guardar os dados na base de dados
         $utilizadorUc->save();
 
-        // Redirecionar para a rota desejada ou fazer algo mais, se necessário
+        // Redirecionar para a rota desejada 
         return redirect()->route('detalhesuc', ['codigo' => $codigo])->with('success', 'Docente responsável adicionado com sucesso!');
     }
-    // Exemplo de método de exclusão em seu controlador
+    
 
     public function update(Request $request, $id)
     {

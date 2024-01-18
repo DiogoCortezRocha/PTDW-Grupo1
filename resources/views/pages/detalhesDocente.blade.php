@@ -58,7 +58,7 @@
         <div class="col-md-4">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title"><strong>Observaçoes</strong></h4>
+                    <h4 class="card-title"><strong>Observações</strong></h4>
                     <textarea class="form-control" rows="5" readonly></textarea>
                 </div>
             </div>
