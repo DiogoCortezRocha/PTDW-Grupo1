@@ -40,7 +40,7 @@ class UnidadeCurricularController extends Controller
             // Carregar automaticamente os utilizadores associados usando o relacionamento
             $uc->load('utilizadores');
 
-            // Acessar as informações sobre uma UC e os números de funcionário associados
+            // Aceder as informações sobre uma UC e os números de funcionário associados
             $utilizadoruc = $uc->utilizadores;
             $funcionarios = User::whereIn('numeroFuncionario', $utilizadoruc->pluck('numeroFuncionario'))->get();
             $docentenaoresponsavel = User::whereIn('numeroFuncionario', $utilizadoruc->where('docenteresponsavel', 0)->pluck('numeroFuncionario'))->get();
@@ -48,8 +48,7 @@ class UnidadeCurricularController extends Controller
             $adicionadocentes = $this->docentes();
             return view('pages.detalhesUnidadesCurriculares', compact('utilizadoruc', 'uc', 'funcionarios', 'docenteresponsavel', 'docentenaoresponsavel', 'adicionadocentes'));
         } else {
-            // Tratar caso a UC não seja encontrada
-            // Por exemplo, redirecionar de volta à página anterior ou para uma página de erro
+           
             return redirect()->back();
         }
     }
@@ -106,11 +105,18 @@ class UnidadeCurricularController extends Controller
         $request->validate([
             'docentes' => 'required',
         ]);
+        $existeCombinação = Utilizador_uc::where('numeroFuncionario', $request->input('docentes'))
+        ->where('codigoUC', $codigo)
+        ->exists();
+
+        if ($existeCombinação) {
+        return redirect()->route('detalhesuc', ['codigo' => $codigo])->with('error', 'Este docente já leciona a unidade curricular');
+         }
 
         // Criar uma nova instância do model Utilizador_Uc
         $utilizadorUc = new Utilizador_uc;
 
-        // Atribuir os valores aos campos do modelo
+        // Atribuir os valores aos campos do model
         $utilizadorUc->numeroFuncionario = $request->input('docentes');
         $utilizadorUc->codigoUC = $codigo; // Usar o código recebido na rota
         $utilizadorUc->docenteresponsavel = 1;
@@ -120,6 +126,37 @@ class UnidadeCurricularController extends Controller
 
         // Redirecionar para a rota desejada 
         return redirect()->route('detalhesuc', ['codigo' => $codigo])->with('success', 'Docente responsável adicionado com sucesso!');
+    }
+    public function adiciona_docentenaoresponsavel_uc(Request $request, $codigo)
+    {
+        $request->validate([
+            'docentes' => 'required',
+        ]);
+        $existeCombinação = Utilizador_uc::where('numeroFuncionario', $request->input('docentes'))
+        ->where('codigoUC', $codigo)
+        ->first();
+
+        if ($existeCombinação) {
+            if ($existeCombinação->docenteresponsavel) {
+                return redirect()->route('detalhesuc', ['codigo' => $codigo])->with('error', 'Este docente é responsável pela unidade curricular');
+            } else {
+                return redirect()->route('detalhesuc', ['codigo' => $codigo])->with('error', 'Este docente já leciona a unidade curricular');
+            }
+        }
+
+        // Criar uma nova instância do model Utilizador_Uc
+        $utilizadorUc = new Utilizador_uc;
+
+        // Atribuir os valores aos campos do modelo
+        $utilizadorUc->numeroFuncionario = $request->input('docentes');
+        $utilizadorUc->codigoUC = $codigo; // Usar o código recebido na rota
+        $utilizadorUc->docenteresponsavel = 0;
+
+        // guardar os dados na base de dados
+        $utilizadorUc->save();
+
+        // Redirecionar para a rota desejada 
+        return redirect()->route('detalhesuc', ['codigo' => $codigo])->with('success', 'Docente adicionado com sucesso!');
     }
     
 

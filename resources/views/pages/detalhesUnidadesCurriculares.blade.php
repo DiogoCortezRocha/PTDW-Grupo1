@@ -34,20 +34,68 @@
 
             <div class="col-md-6">
                 <div class="form-group">
-                    <label><strong>{{ __('Docentes a lecionar a unidade curricular') }}</strong></label>
-                  @if (count($docentenaoresponsavel) > 0)   
+                 <div class="d-flex align-items-center"> 
+                    <label><strong>{{ __('Outros docentes') }}</strong></label>
+                    
+                        <button class="btn btn-primary add-button2 ml-2 "data-toggle="modal" data-target="#adicionadocentenaoresponsavelmodel" >
+                           <div class="icon">+</div>
+                        </button>
+                 </div>  
+                  @if (count($docentenaoresponsavel) > 0)  
+                 
                     <ul>
                         @foreach ($docentenaoresponsavel as $numero)
-                            <li>{{ $numero->nome }}</li>
+                            <li><div class="d-flex align-items-center">
+                                {{ $numero->nome }}
+                                <form method="POST" action="{{ route('elimina_associacao_docente_uc', ['numeroFuncionario' => $numero->numeroFuncionario, 'codigoUC' => $uc->codigo]) }}">
+                                    @csrf
+                                    @method('DELETE') 
+                                    <button type="submit" class="btn btn-secundary add-button2 ml-2">
+                                        <div class="icon">-</div>
+                                    </button>
+                                </form>
+                            </div></li>
                         @endforeach
                     </ul>            
                   @else
-                  
-    <div class="d-flex align-items-center">
-        <p class="paragraph">Não contém docente a lecionar a unidade curricular</p>
-    </div>
-   
+                  <div class="d-flex align-items-center">
+                    <p class="paragraph">Não contém docente a lecionar a unidade curricular</p>
+                </div>
                   @endif
+                  
+                <div class="modal fade" id="adicionadocentenaoresponsavelmodel" tabindex="-1" role="dialog" aria-labelledby="adicionadocentenaoresponsavelLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="adicionadocentenaoresponsavelModalLabel"><strong>Adicionar docente não responsável</strong></h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form method="POST" action="{{route('inserirdocentenaoresponsavel.store', ['codigo' => $uc->codigo]) }}">
+                                     @csrf
+                                 <label>{{ __('Docente nao responsável') }}</label>
+                                 <select name="docentes">
+                                   
+                                     @foreach ($adicionadocentes['numerosENomes'] as $docente)
+                                     @if($docente['tipoUtilizador']=='docente'||$docente['tipoUtilizador']=='ambos')
+                                        <option value="{{ $docente['numeroFuncionario'] }}">{{ $docente['nome'] }}</option>
+                                     @endif   
+                                    @endforeach
+                                     
+                                </select>
+                               
+                                        
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary">Guardar</button>
+                            </div>
+                        </form>
+                        
+                        </div>
+                    </div>
+                </div>
                   <label><strong>{{ __('Docente responsável pela unidade curricular') }}</strong></label>
                   @if (count($docenteresponsavel) > 0)
                   <ul>
@@ -55,7 +103,7 @@
                           <li>
                               <div class="d-flex align-items-center">
                                   {{ $numero->nome }}
-                                  <form method="POST" action="{{ route('eleminadocenteresponsavel', ['numeroFuncionario' => $numero->numeroFuncionario, 'codigoUC' => $uc->codigo]) }}">
+                                  <form method="POST" action="{{ route('elimina_associacao_docente_uc', ['numeroFuncionario' => $numero->numeroFuncionario, 'codigoUC' => $uc->codigo]) }}">
                                       @csrf
                                       @method('DELETE') 
                                       <button type="submit" class="btn btn-secundary add-button2 ml-2">
@@ -101,7 +149,6 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="submit" class="btn btn-primary">Guardar</button>
-                                    <!-- Outros botões ou ações, se necessário -->
                                 </div>
                             </form>
                             
@@ -124,6 +171,17 @@
                     element.style.display = 'none';
                      }, 5000);
             </script>
+    @endif
+    @if(Session::has('error'))
+        <div id="error-message" class="alert alert-warning">
+            {{ Session::get('error') }}
+        </div>
+        <script>
+            setTimeout(function() {
+                const element = document.getElementById('error-message');
+                element.style.display = 'none';
+                 }, 5000);
+        </script>
     @endif
 @endsection
 
