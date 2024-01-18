@@ -37,9 +37,15 @@ class UserController extends Controller
     public function storeImport(Request $request) {
         // dd($request->all());
         // dd(file($request->file->getRealPath()));
+
+        $request->validate([
+            'file' => 'required|mimes:xls,xlsx',
+        ]);
+
         Excel::import(new DocentesImport, $request->file, \Maatwebsite\Excel\Excel::XLSX);
-        // Excel::import(new DocentesImport, $file);
-        // Excel::import(new DocentesImport, request()->file('file'));
-        return redirect('user')->with('success', 'All good!');
+        
+        // return redirect()->back()->with('success', 'Ficheiro importado com sucesso!');
+        return redirect('docentes')->with('success', 'Ficheiro importado com sucesso!');
+        
     }
 }

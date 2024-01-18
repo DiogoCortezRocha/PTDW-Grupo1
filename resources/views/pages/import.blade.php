@@ -19,6 +19,13 @@
 
                 <div class="card-body">
                     <div class="col-8" >
+                        @if (isset($errors) && $errors->any())
+                            <div class="alert alert-danger" role="alert">
+                                @foreach ($errors->all() as $error)
+                                    {{ $error }}
+                                @endforeach
+                            </div>
+                        @endif
                         <form action="{{ url('import') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                                 <div class="form-group">
