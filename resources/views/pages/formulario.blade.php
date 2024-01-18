@@ -61,53 +61,28 @@
                         @include('alerts.feedback', ['field' => 'docentes'])
                     </div>
                     <div class="row">
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
                                 <label>{{ __('Utilização de laboratorios') }}</label>
                                 <div class="d-flex justify-content-between">
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="obrigatorio"
-                                            name="obrigatorio">
-                                        <label class="custom-control-label"
-                                            for="obrigatorio">{{ __('Obrigatório') }}</label>
-                                    </div>
 
                                     <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="preferencial"
-                                            name="preferencial">
-                                        <label class="custom-control-label"
-                                            for="preferencial">{{ __('Preferencial') }}</label>
-                                    </div>
+                                        <input type="checkbox" class="custom-control-input" id="obrigatorio" name="obrigatorio">
+                                        <label class="custom-control-label" for="obrigatorio">{{ __('Obrigatório') }}</label>
+
                                 </div>
+
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="preferencial" name="preferencial">
+                                        <label class="custom-control-label" for="preferencial">{{ __('Preferencial') }}</label>
+                                    </div>
+
+                                </div>
+                                <div id="checkboxError" class="text-danger" style="display: none;">{{ __('Não pode ser obrigatório e preferencial ao mesmo tempo.') }}</div>
                             </div>
                         </div>
-                        <div class="col-md-3">
-                            <div class="form-group{{ $errors->has('sala') ? ' has-danger' : '' }}">
-                                <label>{{ __('Laboratorios possiveis') }}</label>
-                                <select name="sala"
-                                    class="form-control{{ $errors->has('sala') ? ' is-invalid' : '' }}">
-                                    <option value="">{{ __('Nenhum') }}</option>
-                                    @foreach ($salas as $sala)
-                                        <option value="{{ $sala->numero }}">{{ $sala->numero }}</option>
-                                    @endforeach
-                                </select>
-                                @include('alerts.feedback', ['field' => 'sala'])
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group{{ $errors->has('sala') ? ' has-danger' : '' }}">
-                                <label>{{ __('Laboratorios possiveis') }}</label>
-                                <select name="sala"
-                                    class="form-control{{ $errors->has('sala') ? ' is-invalid' : '' }}">
-                                    <option value="">{{ __('Nenhum') }}</option>
-                                    @foreach ($salas as $sala)
-                                        <option value="{{ $sala->numero }}">{{ $sala->numero }}</option>
-                                    @endforeach
-                                </select>
-                                @include('alerts.feedback', ['field' => 'sala'])
-                            </div>
-                        </div>
-                        <div class="col-md-3">
+
+                        <div class="col-md-8">
                             <div class="form-group{{ $errors->has('sala') ? ' has-danger' : '' }}">
                                 <label>{{ __('Laboratorios possiveis') }}</label>
                                 <select name="sala"
@@ -317,7 +292,21 @@
                 });
             }
         }
+        document.querySelector('form').addEventListener('submit', function(event) {
+    var obrigatorio = document.getElementById('obrigatorio').checked;
+    var preferencial = document.getElementById('preferencial').checked;
 
+    if (obrigatorio && preferencial) {
+        event.preventDefault();
+        var checkboxError = document.getElementById('checkboxError');
+        checkboxError.style.display = 'block';
+
+        // Faz a mensagem de erro desaparecer após 5 segundos
+        setTimeout(function() {
+            checkboxError.style.display = 'none';
+        }, 5000);
+    }
+});
 
         window.onload = function() {
             // Seleciona o primeiro botão quando a página é carregada

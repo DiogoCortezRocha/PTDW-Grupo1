@@ -45,7 +45,7 @@
                         </table>
                         <div class="mt-4">
                             <h4 class="card-title"><strong>Observações</strong></h4>
-                            <textarea class="form-group w-100" name="observacoes" rows="6">{{ $observacoes->obsDocente }}</textarea>
+                            <textarea class="form-group w-100" name="observacoes" rows="6">{{  $observacoes ? $observacoes->obsDocente : '' }}</textarea>
                         </div>
                         <div class="text-right"> <!-- Alinhamento à direita -->
                             <button type="submit" class="btn btn-primary">Guardar</button>

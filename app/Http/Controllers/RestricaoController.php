@@ -47,8 +47,13 @@ class RestricaoController extends Controller
     $this->delete();
 
      // Atualizar o campo restricaoSubmetida do usuário
-     $user->restricaoSubmetida = 1;
+     $utilizador = User::find($user->numeroFuncionario);
+     $utilizador->restricaoSubmetida=1;
+     $utilizador->save();
 
+     if ($blocosSelecionados === null) {
+        $blocosSelecionados = [];
+    }
 
     foreach($blocosSelecionados as $blocoId) {
         // Criar uma nova restrição para cada bloco selecionado
