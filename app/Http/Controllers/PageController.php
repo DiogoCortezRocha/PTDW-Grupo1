@@ -37,17 +37,6 @@ class PageController extends Controller
     }
 
     /**
-     * Display tables page
-     *
-     * @return \Illuminate\View\View
-     */
-    public function docentes()
-    {
-
-        return view('pages.docentes');
-    }
-
-    /**
      * Display notifications page
      *
      * @return \Illuminate\View\View
