@@ -1,12 +1,10 @@
 <?php
 
-
+use App\Http\Controllers\UnidadeCurricularController;
+use App\Models\UnidadeCurricular;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\UnidadeCurricularController;
-use App\Http\Controllers\SalaController;
-use App\Http\Controllers\RestricaoController;
-use App\Http\Controllers\BlocoController;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,7 +16,6 @@ use App\Http\Controllers\BlocoController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
@@ -63,8 +60,13 @@ Route::get('/inserir_uc',[App\Http\Controllers\UnidadeCurricularController::clas
 Route::post('inserir_uc/adicionar', 'App\Http\Controllers\UnidadeCurricularController@store')->name('inserir_uc.store');
 Route::get('/dashboard', 'App\Http\Controllers\HomeController@index')->name('dashboard');
 Route::get('/PaginaInical', 'App\Http\Controllers\PageController@paginaInicial')->name('dashboardPage');
+Route::get('/import', [App\Http\Controllers\UserController::class,'import']);
+Route::post('/import', [App\Http\Controllers\UserController::class,'storeImport']);
 
-Route::put('/formularioEdit/{id}', 'App\Http\Controllers\UnidadeCurricularController@update')->name('formularioEdit');
 Route::get('/ciclos/editar/{id}', 'UnidadeCurricularController@editar')->name('ciclos.editar');
 Route::delete('/ciclos/remover/{id}', 'UnidadeCurricularController@remover')->name('ciclos.remover');
 Route::get('/ciclos/adicionar', 'CiclosController@adicionar')->name('ciclos.adicionar');
+
+Route::put('/formularioEdit/{id}', 'App\Http\Controllers\UnidadeCurricularController@update')->name('formularioEdit');
+
+
