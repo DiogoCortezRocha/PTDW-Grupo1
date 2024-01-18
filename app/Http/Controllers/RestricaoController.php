@@ -80,5 +80,20 @@ public function delete()
     // Remover todas as restrições existentes para o usuário
     Restricoes::where('numeroFuncionario', $user->numeroFuncionario)->delete();
 }
-
+public function detalhes_docentes($numeroFuncionario){
+   
+    $user = User::where('numeroFuncionario', $numeroFuncionario)->first();
+     $blocosUtilizador = $user->blocos;
+ 
+ 
+         $blocoInstance = new Bloco();
+         $partesDoDiaDiferentes = $blocoInstance->partesDoDia();
+         $diaDaSemanaDiferentes = $blocoInstance->diasDaSemana();
+         $blocosTodos = $blocoInstance->blocos();
+ 
+        $observacoes= $user->observacao;
+ 
+ 
+ return view('pages.detalhesDocente', compact('blocosUtilizador', 'partesDoDiaDiferentes', 'diaDaSemanaDiferentes', 'blocosTodos','observacoes'));
+ }
 }

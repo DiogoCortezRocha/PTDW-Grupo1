@@ -65,7 +65,7 @@ class User extends Authenticatable
         'password',
         'acn',
         'tipoUtilizador',
-        'restricaoSubmetida'
+        'restricaoSubmetida',
     ];
 
     /**
