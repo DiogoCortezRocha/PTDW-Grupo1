@@ -1,10 +1,12 @@
 <?php
 
-use App\Http\Controllers\UnidadeCurricularController;
-use App\Models\UnidadeCurricular;
+
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
+use App\Http\Controllers\UnidadeCurricularController;
+use App\Http\Controllers\SalaController;
+use App\Http\Controllers\RestricaoController;
+use App\Http\Controllers\BlocoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,23 +29,27 @@ Route::get('/', 'App\Http\Controllers\HomeController@index')->name('home')->midd
 
 Auth::routes();
 
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Auth::routes();
 
-
-
+Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home')->middleware('auth');
+Route::get('/ciclos/editar/{id}', 'UnidadeCurricularController@editar')->name('ciclos.editar');
+Route::delete('/ciclos/remover/{id}', 'UnidadeCurricularController@remover')->name('ciclos.remover');
+Route::get('/ciclos/adicionar', 'CiclosController@adicionar')->name('ciclos.adicionar');
 Route::group(['middleware' => 'auth'], function () {
 		Route::get('icons', ['as' => 'pages.icons', 'uses' => 'App\Http\Controllers\PageController@icons']);
+		Route::get('maps', ['as' => 'pages.maps', 'uses' => 'App\Http\Controllers\PageController@maps']);
 		Route::get('notifications', ['as' => 'pages.notifications', 'uses' => 'App\Http\Controllers\PageController@notifications']);
 		Route::get('rtl', ['as' => 'pages.rtl', 'uses' => 'App\Http\Controllers\PageController@rtl']);
-
+		Route::get('tables', ['as' => 'pages.tables', 'uses' => 'App\Http\Controllers\PageController@tables']);
 		Route::get('typography', ['as' => 'pages.typography', 'uses' => 'App\Http\Controllers\PageController@typography']);
 		Route::get('upgrade', ['as' => 'pages.upgrade', 'uses' => 'App\Http\Controllers\PageController@upgrade']);
-		Route::get('formulario', ['as' => 'pages.formulario', 'uses' => 'App\Http\Controllers\Utilizador_UnidadeCurricular@Index']);
-        Route::get('horarios', ['as' => 'pages.horarios', 'uses' => 'App\Http\Controllers\RestricaoController@Index']);
+		Route::get('formulario', ['as' => 'pages.formulario', 'uses' => 'App\Http\Controllers\PageController@formulario']);
+        Route::get('horarios', ['as' => 'pages.horarios', 'uses' => 'App\Http\Controllers\PageController@horarios']);
         Route::get('detalhesDocente', ['as' => 'pages.detalhesDocente', 'uses' => 'App\Http\Controllers\PageController@detalhesDocente']);
 		Route::get('detalhesUnidadesCurriculares', ['as' => 'pages.detalhesUnidadesCurriculares', 'uses' => 'App\Http\Controllers\PageController@detalhesUnidadesCurriculares']);
         Route::get('unidadesCurriculares', ['as' => 'pages.unidadesCurriculares', 'uses' => 'App\Http\Controllers\UnidadeCurricularController@Index']);
         Route::get('ciclosEstudos', ['as' => 'pages.ciclosEstudos', 'uses' => 'App\Http\Controllers\PageController@ciclosEstudos']);
-        Route::get('docentes', ['as' => 'pages.docentes', 'uses' => 'App\Http\Controllers\UserController@IndexDocentes']);
 
     });
 
@@ -55,6 +61,7 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 Route::get('detalhesUnidadesCurriculares/{codigo}',[App\Http\Controllers\UnidadeCurricularController::class,'show'])->name('detalhesuc');
+
 Route::post('/detalhesUnidadesCurriculares/{codigo}/inserir-docenteresponsavel', [App\Http\Controllers\UnidadeCurricularController::class, 'adiciona_docenteresponsavel_uc'])->name('inserirdocenteresponsavel.store');
 Route::delete('/detalhesUnidadesCurriculares/{numeroFuncionario}/{codigoUC}', [App\Http\Controllers\Utilizador_UnidadeCurricular::class,'destroy_docente_responsavel'])->name('eleminadocenteresponsavel');
 //Route::get('detalhesUnidadesCurricularesfuncionarios/{codigo}',[App\Http\Controllers\Utilizador_UnidadeCurricular::class,'show'])->name('funcionario');
@@ -67,3 +74,4 @@ Route::get('/import', [App\Http\Controllers\UserController::class,'import']);
 Route::post('/import', [App\Http\Controllers\UserController::class,'storeImport']);
 
 Route::put('/formularioEdit/{id}', 'App\Http\Controllers\UnidadeCurricularController@update')->name('formularioEdit');
+
