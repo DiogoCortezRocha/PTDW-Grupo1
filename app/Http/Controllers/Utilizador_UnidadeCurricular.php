@@ -50,7 +50,7 @@ class Utilizador_UnidadeCurricular extends Controller
         $userUcGroupByUc = $user_ucInstance->get();
         return $userUcGroupByUc->groupBy('codigoUC');
     }
-    public function destroy_docente_responsavel($numeroFuncionario, $codigoUC)
+    public function destroy_docente_uc($numeroFuncionario, $codigoUC)
     {
         try {
             // Execute uma instrução SQL para excluir o registro
@@ -61,12 +61,13 @@ class Utilizador_UnidadeCurricular extends Controller
 
             // Verifique se algum registro foi excluído
             if (!$deleted) {
-                return redirect()->route('detalhesuc', ['codigo' => $codigoUC])->with('error', 'Docente responsável não encontrado');
+                return redirect()->route('detalhesuc', ['codigo' => $codigoUC])->with('error', 'Docente não encontrado');
             }
 
-            return redirect()->route('detalhesuc', ['codigo' => $codigoUC])->with('success', 'Docente responsável excluído com sucesso');
+            return redirect()->route('detalhesuc', ['codigo' => $codigoUC])->with('success', 'Docente excluído com sucesso');
         } catch (\Exception $e) {
-            return redirect()->route('detalhesuc', ['codigo' => $codigoUC])->with('error', 'Erro ao excluir docente responsável: ' . $e->getMessage());
+            return redirect()->route('detalhesuc', ['codigo' => $codigoUC])->with('error', 'Erro ao excluir docente: ' . $e->getMessage());
         }
     }
+   
 }

@@ -40,7 +40,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group{{ $errors->has('horas') ? ' has-danger' : '' }}">
-                                <label>{{ __('Número de horas da unidade curricular') }}</label>
+                                <label>{{ __('Número de horas semanais da unidade curricular') }}</label>
                                 <input type="text" name="horas"
                                     class="form-control{{ $errors->has('horas') ? ' is-invalid' : '' }}" placeholder="{{ __('Horas') }}">
                                 @include('alerts.feedback', ['field' => 'horas'])
@@ -59,16 +59,28 @@
 
          </div>
     </div>
-    @if (session('success'))
-    <div id="success-message" class="alert alert-success">
-        {{ session('success') }}
+   
+</div>
+@if (session('success'))
+<div id="success-message" class="alert alert-success">
+    {{ session('success') }}
+</div>
+<script>
+    setTimeout(function() {
+        const element = document.getElementById('success-message');
+        element.style.display = 'none';
+    }, 5000);
+</script>
+@endif
+@if(Session::has('error'))
+    <div id="error-message" class="alert alert-warning">
+        {{ Session::get('error') }}
     </div>
     <script>
         setTimeout(function() {
-            const element = document.getElementById('success-message');
+            const element = document.getElementById('error-message');
             element.style.display = 'none';
-        }, 5000);
+             }, 5000);
     </script>
 @endif
-</div>
 @endsection
