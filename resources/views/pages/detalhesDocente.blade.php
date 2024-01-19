@@ -5,7 +5,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title"><strong>Horário</strong></h4>
+                    <h4 class="card-title"><strong>Impedimentos</strong></h4>
                     
                             <table class="table">
                                 <thead>
