@@ -94,6 +94,6 @@ public function detalhes_docentes($numeroFuncionario){
         $observacoes= $user->observacao;
  
  
- return view('pages.detalhesDocente', compact('blocosUtilizador', 'partesDoDiaDiferentes', 'diaDaSemanaDiferentes', 'blocosTodos','observacoes'));
+ return view('pages.detalhesDocente', compact('blocosUtilizador', 'partesDoDiaDiferentes', 'diaDaSemanaDiferentes', 'blocosTodos','observacoes','user'));
  }
 }

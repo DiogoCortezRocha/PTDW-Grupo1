@@ -71,7 +71,7 @@
                         <label>{{ __('Nome') }}</label>
                         <input type="text" name="name"
                             class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"
-                            placeholder="{{ __('Name') }}" value="{{ old('name', auth()->user()->name) }}">
+                            placeholder="{{ __('Name') }}" value="{{ old('name', $user->nome) }}">
                         @include('alerts.feedback', ['field' => 'name'])
                     </div>
 
@@ -79,7 +79,7 @@
                         <label>{{ __('Email address') }}</label>
                         <input type="email" name="email"
                             class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
-                            placeholder="{{ __('Email address') }}" value="{{ old('email', auth()->user()->email) }}">
+                            placeholder="{{ __('Email address') }}" value="{{ old('email', $user->email) }}">
                         @include('alerts.feedback', ['field' => 'email'])
                     </div>
                 </div>
