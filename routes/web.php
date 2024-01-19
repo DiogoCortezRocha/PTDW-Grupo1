@@ -65,11 +65,6 @@ Route::post('inserir_uc/adicionar', 'App\Http\Controllers\UnidadeCurricularContr
 Route::get('/dashboard', 'App\Http\Controllers\HomeController@index')->name('dashboard');
 Route::get('/PaginaInical', 'App\Http\Controllers\PageController@paginaInicial')->name('dashboardPage');
 
-
-Route::get('/ciclos/editar/{id}', 'UnidadeCurricularController@editar')->name('ciclos.editar');
-Route::delete('/ciclos/remover/{id}', 'UnidadeCurricularController@remover')->name('ciclos.remover');
-Route::get('/ciclos/adicionar', 'CiclosController@adicionar')->name('ciclos.adicionar');
-
 Route::put('/formularioEdit/{id}', 'App\Http\Controllers\UnidadeCurricularController@update')->name('formularioEdit');
 
 
