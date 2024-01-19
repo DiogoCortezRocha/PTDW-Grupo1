@@ -39,7 +39,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('detalhesDocente', ['as' => 'pages.detalhesDocente', 'uses' => 'App\Http\Controllers\PageController@detalhesDocente']);
 		Route::get('detalhesUnidadesCurriculares', ['as' => 'pages.detalhesUnidadesCurriculares', 'uses' => 'App\Http\Controllers\PageController@detalhesUnidadesCurriculares']);
         Route::get('unidadesCurriculares', ['as' => 'pages.unidadesCurriculares', 'uses' => 'App\Http\Controllers\UnidadeCurricularController@Index']);
-        Route::get('ciclosEstudos', ['as' => 'pages.ciclosEstudos', 'uses' => 'App\Http\Controllers\PageController@ciclosEstudos']);
+        Route::get('cursos', ['as' => 'pages.ciclosEstudos', 'uses' => 'App\Http\Controllers\CursoController@Index']);
         Route::get('docentes', ['as' => 'pages.docentes', 'uses' => 'App\Http\Controllers\UserController@IndexDocentes']);
 		Route::get('/import', [App\Http\Controllers\UserController::class,'import']);
 		Route::post('/import', [App\Http\Controllers\UserController::class,'storeImport']);

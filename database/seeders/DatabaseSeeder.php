@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-
+use Database\Factories\CursoFactory;
 use Database\Factories\RestricoesFactory;
 use Database\Factories\SalaFactory;
 use Database\Factories\UnidadeCurricularFactory;
@@ -10,6 +10,7 @@ use Database\Factories\Utilizador_ucFactory;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\QueryException;
 use Database\Factories\ObservacaoFactory;
+use Database\Factories\Curso_UnidadeCurricularFactory;
 
 
 class DatabaseSeeder extends Seeder
@@ -58,5 +59,17 @@ class DatabaseSeeder extends Seeder
         } catch (QueryException $e) {
         }
     }
+
+        //Cursos
+
+        CursoFactory::new()->count(10)->create();
+
+        //Curso_UnidadeCurricular
+        for ($i = 0; $i < 5; $i++) {
+            try {
+                Curso_UnidadeCurricularFactory::new()->create();
+            } catch (QueryException $e) {
+            }
+        }
     }
 }
