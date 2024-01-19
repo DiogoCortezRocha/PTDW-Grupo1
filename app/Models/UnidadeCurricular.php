@@ -6,8 +6,9 @@ use App\Http\Controllers\Utilizador_UnidadeCurricular;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use App\Contracts\Importable;
 
-class UnidadeCurricular extends Model
+class UnidadeCurricular extends Model implements Importable
 {
     use HasFactory;
 
@@ -36,7 +37,7 @@ class UnidadeCurricular extends Model
      *
      * @var bool
      */
-    public $incrementing = true;
+    public $incrementing = false;
 
 
     /**
@@ -52,6 +53,7 @@ class UnidadeCurricular extends Model
      * @var array
      */
     protected $fillable = [
+        "codigo",
         "acn",
         "name",
         "horas",
@@ -78,4 +80,8 @@ class UnidadeCurricular extends Model
         return $this->hasMany(Utilizador_uc::class, 'codigoUC', 'codigo');
     }
 
+    public function import(array $data)
+    {
+        return $this->create($data);
+    }
 }

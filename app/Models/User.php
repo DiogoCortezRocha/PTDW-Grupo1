@@ -9,10 +9,10 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use App\Contracts\Importable;
 
 
-
-class User extends Authenticatable
+class User extends Authenticatable implements Importable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -120,6 +120,11 @@ class User extends Authenticatable
     public function todosNumerosFuncionariosENomes()
     {
         return $this->select('numeroFuncionario', 'nome','tipoUtilizador')->get();
+    }
+
+    public function import(array $data)
+    {
+        return $this->create($data);
     }
 
 }

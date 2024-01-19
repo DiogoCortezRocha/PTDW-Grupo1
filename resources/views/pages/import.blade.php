@@ -2,7 +2,7 @@
     
 </div>
 
-@extends('layouts.app', ['page' => __('Tables'), 'pageSlug' => 'tables'])
+@extends('layouts.app', ['page' => __('docentes'), 'pageSlug' => 'docentes'])
 
 @section('content')
     <div class="row">
@@ -28,17 +28,18 @@
                         @endif
                         <form action="{{ url('import') }}" method="POST" enctype="multipart/form-data">
                             @csrf
-                                <div class="form-group">
-                                   <div class="custom-file text-left">
-                                       {{-- <input type="file" name="file" class="custom-file-input" id="customFile" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"> --}}
-                                       <input type="file" name="file" class="custom-file-input" id="customFile">
-                                       <label class="custom-file-label" for="customFile">Selecione o ficheiro</label>
-                                   </div>
+                           
+                            <div class="form-group">
+                                <div class="custom-file text-left">
+                                    {{-- <input type="file" name="file" class="custom-file-input" id="customFile" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"> --}}
+                                    <input type="file" name="file" class="custom-file-input" id="customFile">
+                                    <label class="custom-file-label" for="customFile">Selecione o ficheiro</label>
                                 </div>
-                                <div class="card-footer">
-                                    <button class="btn btn-primary">Importar dados</button>
-                                    {{-- <a class="btn btn-success" href="{{ route('file-export') }}">Export data</a> --}}
-                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <button class="btn btn-primary">Importar dados</button>
+                                {{-- <a class="btn btn-success" href="{{ route('file-export') }}">Export data</a> --}}
+                            </div>
                         </form>
                     </div>
                 </div>

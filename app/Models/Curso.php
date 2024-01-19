@@ -4,8 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Contracts\Importable;
 
-class Curso extends Model
+class Curso extends Model implements Importable
 {
     use HasFactory;
 
@@ -50,6 +51,12 @@ class Curso extends Model
         * @var array
         */
        protected $fillable = [ 
-           "nome"
+            "codigo",
+            "nome"
        ];
+
+        public function import(array $data)
+        {
+            return $this->create($data);
+        }
 }

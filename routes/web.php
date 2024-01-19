@@ -41,7 +41,10 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('unidadesCurriculares', ['as' => 'pages.unidadesCurriculares', 'uses' => 'App\Http\Controllers\UnidadeCurricularController@Index']);
         Route::get('ciclosEstudos', ['as' => 'pages.ciclosEstudos', 'uses' => 'App\Http\Controllers\PageController@ciclosEstudos']);
         Route::get('docentes', ['as' => 'pages.docentes', 'uses' => 'App\Http\Controllers\UserController@IndexDocentes']);
-
+		Route::get('/import', [App\Http\Controllers\UserController::class,'import']);
+		Route::post('/import', [App\Http\Controllers\UserController::class,'storeImport']);
+		Route::get('/importDsd', [App\Http\Controllers\ImportController::class, 'import_form']);
+		Route::post('/importDsd', [App\Http\Controllers\ImportController::class, 'import']);
     });
 
 Route::group(['middleware' => 'auth'], function () {
@@ -60,8 +63,6 @@ Route::get('/inserir_uc',[App\Http\Controllers\UnidadeCurricularController::clas
 Route::post('inserir_uc/adicionar', 'App\Http\Controllers\UnidadeCurricularController@store')->name('inserir_uc.store');
 Route::get('/dashboard', 'App\Http\Controllers\HomeController@index')->name('dashboard');
 Route::get('/PaginaInical', 'App\Http\Controllers\PageController@paginaInicial')->name('dashboardPage');
-Route::get('/import', [App\Http\Controllers\UserController::class,'import']);
-Route::post('/import', [App\Http\Controllers\UserController::class,'storeImport']);
 
 Route::get('/ciclos/editar/{id}', 'UnidadeCurricularController@editar')->name('ciclos.editar');
 Route::delete('/ciclos/remover/{id}', 'UnidadeCurricularController@remover')->name('ciclos.remover');
