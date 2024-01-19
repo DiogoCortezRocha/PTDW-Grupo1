@@ -56,13 +56,15 @@ Route::group(['middleware' => 'auth'], function () {
 
 Route::get('detalhesUnidadesCurriculares/{codigo}',[App\Http\Controllers\UnidadeCurricularController::class,'show'])->name('detalhesuc');
 Route::post('/detalhesUnidadesCurriculares/{codigo}/inserir-docenteresponsavel', [App\Http\Controllers\UnidadeCurricularController::class, 'adiciona_docenteresponsavel_uc'])->name('inserirdocenteresponsavel.store');
-Route::delete('/detalhesUnidadesCurriculares/{numeroFuncionario}/{codigoUC}', [App\Http\Controllers\Utilizador_UnidadeCurricular::class,'destroy_docente_responsavel'])->name('eleminadocenteresponsavel');
-//Route::get('detalhesUnidadesCurricularesfuncionarios/{codigo}',[App\Http\Controllers\Utilizador_UnidadeCurricular::class,'show'])->name('funcionario');
+Route::delete('/detalhesUnidadesCurriculares/{numeroFuncionario}/{codigoUC}', [App\Http\Controllers\Utilizador_UnidadeCurricular::class,'destroy_docente_uc'])->name('elimina_associacao_docente_uc');
+Route::post('/detalhesUnidadesCurriculares/{codigo}/inserir-docentenaoresponsavel', [App\Http\Controllers\UnidadeCurricularController::class, 'adiciona_docentenaoresponsavel_uc'])->name('inserirdocentenaoresponsavel.store');
+Route::get('detalhesUnidadesDocentes/{numeroFuncionario}',[App\Http\Controllers\RestricaoController::class,'detalhes_docentes'])->name('detalhesdocentes');
 Route::post('/restricoes', 'App\Http\Controllers\RestricaoController@store')->name('restricoes.store');
 Route::get('/inserir_uc',[App\Http\Controllers\UnidadeCurricularController::class,'inserir_uc'])->name('inserir_uc');
 Route::post('inserir_uc/adicionar', 'App\Http\Controllers\UnidadeCurricularController@store')->name('inserir_uc.store');
 Route::get('/dashboard', 'App\Http\Controllers\HomeController@index')->name('dashboard');
 Route::get('/PaginaInical', 'App\Http\Controllers\PageController@paginaInicial')->name('dashboardPage');
+
 
 Route::get('/ciclos/editar/{id}', 'UnidadeCurricularController@editar')->name('ciclos.editar');
 Route::delete('/ciclos/remover/{id}', 'UnidadeCurricularController@remover')->name('ciclos.remover');

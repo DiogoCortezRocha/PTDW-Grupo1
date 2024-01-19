@@ -2,12 +2,15 @@
 
 namespace Database\Seeders;
 
+
 use Database\Factories\RestricoesFactory;
 use Database\Factories\SalaFactory;
 use Database\Factories\UnidadeCurricularFactory;
 use Database\Factories\Utilizador_ucFactory;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\QueryException;
+use Database\Factories\ObservacaoFactory;
+
 
 class DatabaseSeeder extends Seeder
 {
@@ -24,6 +27,7 @@ class DatabaseSeeder extends Seeder
 
         //Unidades Curriculares
         UnidadeCurricularFactory::new()->count(10)->create();
+
 
         //Utilizador_uc
         for ($i = 0; $i < 5; $i++) {
@@ -46,5 +50,13 @@ class DatabaseSeeder extends Seeder
             } catch (QueryException $e) {
             }
         }
+        //observacoes
+
+       for ($i = 0; $i < 5; $i++) {
+        try {
+            ObservacaoFactory::new()->create();
+        } catch (QueryException $e) {
+        }
+    }
     }
 }

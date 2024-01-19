@@ -11,14 +11,6 @@
         </div>
         <ul class="nav">
 
-
-            <li @if ($pageSlug == 'profile') class="active " @endif>
-                <a href="{{ route('profile.edit') }}">
-                    <i class="tim-icons icon-single-02"></i>
-                    <p>{{ __('Perfil utilizador') }}</p>
-                </a>
-            </li>
-
             @if (auth()->user()->tipoUtilizador == 'comissaoHorarios' || auth()->user()->tipoUtilizador == 'ambos')
                 <li class="comissaoHorarios-item @if ($pageSlug == 'dashboard') active @endif">
                     <a href="{{ route('dashboardPage') }}">
@@ -51,7 +43,7 @@
                 <li class="comissaoHorarios-item @if ($pageSlug == 'ciclosEstudos') active @endif">
                     <a href="{{ route('pages.ciclosEstudos') }}">
                         <i class="tim-icons icon-bullet-list-67"></i>
-                        <p>{{ __('Ciclos de Estudos') }}</p>
+                        <p>{{ __('Cursos') }}</p>
                     </a>
                 </li>
             @endif
@@ -59,23 +51,19 @@
 
 
             @if (auth()->user()->tipoUtilizador == 'docente' || auth()->user()->tipoUtilizador == 'ambos')
-                <li class="docente-item @if ($pageSlug == 'formulario') active @endif">
-                    <a href="{{ route('pages.formulario') }}">
-                        <i class="tim-icons icon-notes"></i>
-                        <p>{{ __('Especificidades de salas') }}</p>
-                    </a>
-                </li>
-
                 <li class="docente-item @if ($pageSlug == 'horarios') active @endif">
                     <a href="{{ route('pages.horarios') }}">
                         <i class="tim-icons icon-calendar-60"></i>
                         <p>{{ __('Restrições de horários') }}</p>
                     </a>
                 </li>
+                <li class="docente-item @if ($pageSlug == 'formulario') active @endif">
+                    <a href="{{ route('pages.formulario') }}">
+                        <i class="tim-icons icon-notes"></i>
+                        <p>{{ __('Especificidades de salas') }}</p>
+                    </a>
+                </li>
             @endif
-
-
-
         </ul>
     </div>
 </div>

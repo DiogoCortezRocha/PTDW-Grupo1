@@ -52,7 +52,8 @@ class Restricoes extends Model
      */
     protected $fillable = [
         'numeroFuncionario',
-        'idBloco'
+        'idBloco',
+        
     ];
 
 

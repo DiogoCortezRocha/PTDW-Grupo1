@@ -20,7 +20,7 @@
                 <div class="card-body">
                     <div class="col-8" >
                         @if (isset($errors) && $errors->any())
-                            <div class="alert alert-danger" role="alert">
+                            <div class="alert alert-warning" role="alert">
                                 @foreach ($errors->all() as $error)
                                     {{ $error }}
                                 @endforeach

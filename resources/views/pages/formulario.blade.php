@@ -19,133 +19,115 @@
 
     <div class="row">
         <div class="col-md-12">
-            <div class="card">
-
-                <form id="myForm" method="post" action="{{ url('formularioEdit') }}">
-                    <div class="card-body">
-                        @csrf
-                        @method('put')
-                        @include('alerts.success')
-
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
-                                    <label>{{ __('Unidade curricular') }}</label>
-                                    <input type="text" name="name"
-                                        class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}">
-                                    @include('alerts.feedback', ['field' => 'name'])
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
-                                    <label>{{ __('Docente responsável') }}</label>
-                                    <input type="text" name="docenteResponsavel"
-                                        class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
-                                        placeholder="{{ __('Não têm docente Responsável') }}"
-                                        value="{{ old('email', auth()->user()->email) }}">
-                                    @include('alerts.feedback', ['field' => 'email'])
-                                </div>
-                            </div>
-                        </div>
-                        <div id="docentes-div" class="form-group{{ $errors->has('docentes') ? ' has-danger' : '' }}">
-                            <label>{{ __('Outros docentes') }}</label>
-                            <ul id="docentes-list">
-                                <!-- Os docentes serão adicionados aqui pelo JavaScript -->
-                            </ul>
-                            @include('alerts.feedback', ['field' => 'docentes'])
-                        </div>
-                        <div class="row">
-                            <div class="col-md-3">
-                                <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
-                                    <label>{{ __('Utilização de laboratorios') }}</label>
-                                    <div class="d-flex justify-content-between">
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="obrigatorio"
-                                                name="obrigatorio" @if ($unidadeCurricular->LaboratorioObrigatorio == 1) checked @endif>
-                                            <label class="custom-control-label"
-                                                for="obrigatorio">{{ __('Obrigatório') }}</label>
-                                        </div>
-
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="preferencial"
-                                                name="preferencial" @if ($unidadeCurricular->LaboratorioPreferencial == 1) checked @endif>
-                                            <label class="custom-control-label"
-                                                for="preferencial">{{ __('Preferencial') }}</label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="form-group{{ $errors->has('sala') ? ' has-danger' : '' }}">
-                                    <label>{{ __('Laboratorios possiveis') }}</label>
-                                    <select name="sala"
-                                        class="form-control{{ $errors->has('sala') ? ' is-invalid' : '' }}">
-                                        <option value="">{{ __('Nenhum') }}</option>
-                                        @foreach ($salas as $sala)
-                                            <option value="{{ $sala->numero }}">{{ $sala->numero }}</option>
-                                        @endforeach
-                                    </select>
-                                    @include('alerts.feedback', ['field' => 'sala'])
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="form-group{{ $errors->has('sala') ? ' has-danger' : '' }}">
-                                    <label>{{ __('Laboratorios possiveis') }}</label>
-                                    <select name="sala"
-                                        class="form-control{{ $errors->has('sala') ? ' is-invalid' : '' }}">
-                                        <option value="">{{ __('Nenhum') }}</option>
-                                        @foreach ($salas as $sala)
-                                            <option value="{{ $sala->numero }}">{{ $sala->numero }}</option>
-                                        @endforeach
-                                    </select>
-                                    @include('alerts.feedback', ['field' => 'sala'])
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="form-group{{ $errors->has('sala') ? ' has-danger' : '' }}">
-                                    <label>{{ __('Laboratorios possiveis') }}</label>
-                                    <select name="sala"
-                                        class="form-control{{ $errors->has('sala') ? ' is-invalid' : '' }}">
-                                        <option value="">{{ __('Nenhum') }}</option>
-                                        @foreach ($salas as $sala)
-                                            <option value="{{ $sala->numero }}">{{ $sala->numero }}</option>
-                                        @endforeach
-                                    </select>
-                                    @include('alerts.feedback', ['field' => 'sala'])
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('software') ? ' has-danger' : '' }}">
-                            <label>{{ __('Software necessário(nome,fabricante,versão,sistema operativo)') }}</label>
-                            <input type="text" name="software"
-                                class="form-control{{ $errors->has('software') ? ' is-invalid' : '' }}">
-                            @include('alerts.feedback', ['field' => 'software'])
-                        </div>
-
-                        <div class="form-group{{ $errors->has('tipo') ? ' has-danger' : '' }}">
-                            <label>{{ __('Sala para Avaliação') }}</label>
-                            <select name="tipo" class="form-control{{ $errors->has('tipo') ? ' is-invalid' : '' }}">
-
-                                @foreach ($tiposSalas as $tipo)
-                                    <option value="{{ $tipo }}">{{ $tipo }}</option>
-                                @endforeach
-                            </select>
-                            @include('alerts.feedback', ['field' => 'tipo'])
-                        </div>
-                    </div>
-
-                    <div class="card-footer">
-                        <div class="text-right"> <!-- Alinhamento à direita -->
-                            <button type="submit" class="btn btn-primary">Guardar</button>
-                        </div>
-                    </div>
-
-                </form>
-
-
-
+            @if($ucs->isEmpty())
+            <div class="alert alert-warning">
+                Não tem nenhuma unidade curricular associada.
             </div>
+        @else
+        <div class="card">
+
+
+            <form id="myForm" method="post" action="{{ url('formularioEdit') }}">
+                <div class="card-body">
+                    @csrf
+                    @method('put')
+                    @include('alerts.success')
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
+                                <label>{{ __('Unidade curricular') }}</label>
+                                <input type="text" name="name"
+                                    class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}">
+                                @include('alerts.feedback', ['field' => 'name'])
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
+                                <label>{{ __('Docente responsável') }}</label>
+                                <input type="text" name="docenteResponsavel"
+                                    class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
+                                    placeholder="{{ __('Não têm docente Responsável') }}"
+                                    value="{{ old('email', auth()->user()->email) }}">
+                                @include('alerts.feedback', ['field' => 'email'])
+                            </div>
+                        </div>
+                    </div>
+                    <div id="docentes-div" class="form-group{{ $errors->has('docentes') ? ' has-danger' : '' }}">
+                        <label>{{ __('Outros docentes') }}</label>
+                        <ul id="docentes-list">
+                            <!-- Os docentes serão adicionados aqui pelo JavaScript -->
+                        </ul>
+                        @include('alerts.feedback', ['field' => 'docentes'])
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
+                                <label>{{ __('Utilização de laboratorios') }}</label>
+                                <div class="d-flex justify-content-between">
+
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="obrigatorio" name="obrigatorio">
+                                        <label class="custom-control-label" for="obrigatorio">{{ __('Obrigatório') }}</label>
+
+                                </div>
+
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="preferencial" name="preferencial">
+                                        <label class="custom-control-label" for="preferencial">{{ __('Preferencial') }}</label>
+                                    </div>
+
+                                </div>
+                                <div id="checkboxError" class="text-danger" style="display: none;">{{ __('Não pode ser obrigatório e preferencial ao mesmo tempo.') }}</div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-8">
+                            <div class="form-group{{ $errors->has('sala') ? ' has-danger' : '' }}">
+                                <label>{{ __('Laboratorios possiveis') }}</label>
+                                <select name="sala"
+                                    class="form-control{{ $errors->has('sala') ? ' is-invalid' : '' }}">
+                                    <option value="">{{ __('Nenhum') }}</option>
+                                    @foreach ($salas as $sala)
+                                        <option value="{{ $sala->numero }}">{{ $sala->numero }}</option>
+                                    @endforeach
+                                </select>
+                                @include('alerts.feedback', ['field' => 'sala'])
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group{{ $errors->has('software') ? ' has-danger' : '' }}">
+                        <label>{{ __('Software necessário(nome,fabricante,versão,sistema operativo)') }}</label>
+                        <input type="text" name="software"
+                            class="form-control{{ $errors->has('software') ? ' is-invalid' : '' }}">
+                        @include('alerts.feedback', ['field' => 'software'])
+                    </div>
+
+                    <div class="form-group{{ $errors->has('tipo') ? ' has-danger' : '' }}">
+                        <label>{{ __('Sala para Avaliação') }}</label>
+                        <select name="tipo" class="form-control{{ $errors->has('tipo') ? ' is-invalid' : '' }}">
+
+                            @foreach ($tiposSalas as $tipo)
+                                <option value="{{ $tipo }}">{{ $tipo }}</option>
+                            @endforeach
+                        </select>
+                        @include('alerts.feedback', ['field' => 'tipo'])
+                    </div>
+                </div>
+
+                <div class="card-footer">
+                    <div class="text-right"> <!-- Alinhamento à direita -->
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
+                </div>
+
+            </form>
+
+
+
+        </div>
+        @endif
 
 
         </div>
@@ -220,17 +202,17 @@
         function fillForm(button) {
             var name = button.getAttribute('data-name');
             var salaAvaliacao = button.getAttribute('data-salaAvaliacao');
-            var laboratorioObrigatorio = button.getAttribute('data-laboratorio-obrigatorio');
-            var laboratorioPreferencial = button.getAttribute('data-laboratorio-preferencial');
             var software = button.getAttribute('data-software');
             var codigoUc = button.getAttribute('data-codigo');
             var authUserNumeroFuncionario = @json(auth()->user()->numeroFuncionario);
             var userUcGroupByUc = JSON.parse(button.getAttribute('data-userUcGroupByUc'));
+            var laboratorioObrigatorio = button.getAttribute('data-laboratorio-obrigatorio');
+            var laboratorioPreferencial = button.getAttribute('data-laboratorio-preferencial');
 
-            console.log(userUcGroupByUc);
-            document.querySelector('input[name="name"]').value = name;
             document.querySelector('input[name="obrigatorio"]').checked = laboratorioObrigatorio == 1;
             document.querySelector('input[name="preferencial"]').checked = laboratorioPreferencial == 1;
+
+            document.querySelector('input[name="name"]').value = name;
             document.querySelector('input[name="software"]').value = software;
             // Reset a ação do formulário para a ação original
             document.getElementById('myForm').action = originalAction;
@@ -310,11 +292,27 @@
                 });
             }
         }
+        document.querySelector('form').addEventListener('submit', function(event) {
+    var obrigatorio = document.getElementById('obrigatorio').checked;
+    var preferencial = document.getElementById('preferencial').checked;
 
+    if (obrigatorio && preferencial) {
+        event.preventDefault();
+        var checkboxError = document.getElementById('checkboxError');
+        checkboxError.style.display = 'block';
+
+        // Faz a mensagem de erro desaparecer após 5 segundos
+        setTimeout(function() {
+            checkboxError.style.display = 'none';
+        }, 5000);
+    }
+});
 
         window.onload = function() {
             // Seleciona o primeiro botão quando a página é carregada
             var firstButton = document.querySelector('.tab button');
+
+
             firstButton.click();
             firstButton.classList.add('selected');
             // Adiciona a classe 'selected' ao botão quando ele é clicado

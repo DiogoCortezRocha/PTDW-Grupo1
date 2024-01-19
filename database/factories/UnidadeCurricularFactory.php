@@ -16,16 +16,19 @@ class UnidadeCurricularFactory extends Factory
      */
     public function definition(): array
     {
+
+        $laboratorioObrigatorio = $this->faker->boolean;
+        $laboratorioPreferencial = $laboratorioObrigatorio ? false : $this->faker->boolean;
         return [
             'codigo' => fake()->unique()->numberBetween(),
             'name' => fake()->name(),
             'acn' => fake()->word(),
             'horas' => fake()->numberBetween(1, 100),
-            'LaboratorioObrigatorio' => fake()->boolean,
-            'LaboratorioPreferencial' => fake()->boolean,
+            'LaboratorioObrigatorio' => $laboratorioObrigatorio,
+            'LaboratorioPreferencial' => $laboratorioPreferencial,
             'software' => fake()->word,
             'salaAvaliacao' => fake()->word,
-            
+
         ];
     }
 }

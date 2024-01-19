@@ -5,7 +5,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    <h5 class="title">{{ __('Editar Perfil') }}</h5>
+                    <h2 class="title">{{ __('Editar Perfil') }}</h2>
                 </div>
                 <form method="post" action="{{ route('profile.update') }}" autocomplete="off">
                     <div class="card-body">
@@ -39,7 +39,7 @@
 
             <div class="card">
                 <div class="card-header">
-                    <h5 class="title">{{ __('Password') }}</h5>
+                    <h2 class="title">{{ __('Password') }}</h2>
                 </div>
                 <form method="post" action="{{ route('profile.password') }}" autocomplete="off">
                     <div class="card-body">

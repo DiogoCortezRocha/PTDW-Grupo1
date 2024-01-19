@@ -6,7 +6,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Horários</h5>
+                    <h5 class="card-title"><b>Impedimentos</b></h5>
                     <form method="POST" action="{{ route('restricoes.store') }}">
                         @csrf
                         <table class="table">
@@ -43,9 +43,15 @@
                                 @endforeach
                             </tbody>
                         </table>
+                        <div class="mt-4">
+                            <h4 class="card-title"><strong>Observações</strong></h4>
+                            <textarea class="form-group w-100" name="observacoes" rows="6">{{  $observacoes ? $observacoes->obsDocente : '' }}</textarea>
+                        </div>
                         <div class="text-right"> <!-- Alinhamento à direita -->
                             <button type="submit" class="btn btn-primary">Guardar</button>
                         </div>
+
+
                     </form>
                 </div>
             </div>

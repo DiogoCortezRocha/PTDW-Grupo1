@@ -6,51 +6,41 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title"><strong>Horário</strong></h4>
-                    <form>
-                        @csrf
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th scope="col"></th>
+                    
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col"></th>
+                                        @foreach ($diaDaSemanaDiferentes as $dia)
+                                            <th scope="col">{{ $dia->diaDaSemana }}</th>
+                                        @endforeach
+                                        <th scope="col"></th> <!-- Adicionado para o botão de salvar -->
+                                    </tr>
+                                </thead>
+                                <tbody>
                                     @php
-                                        $diasSemana = ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
+                                        $sequencial = 1; // Contador sequencial
                                     @endphp
-                                    @foreach ($diasSemana as $dia)
-                                        <th scope="col">{{ $dia }}</th>
+                                    @foreach ($partesDoDiaDiferentes as $parteDia)
+                                        <tr>
+                                            <th scope="row">{{ $parteDia->partDoDia }}</th>
+                                            @foreach ($diaDaSemanaDiferentes as $dia)
+                                                <td>
+                                                    <input  @disabled(true) type="checkbox" name="blocos[]"
+                                                        id="bloco{{ $sequencial }}{{ $dia->id }}"
+                                                        value="{{ $sequencial }}"
+                                                        @if (in_array($sequencial, $blocosUtilizador->pluck('id')->toArray())) checked @disabled(true) @endif>
+                                                </td>
+                                                @php
+    
+                                                    $sequencial++;
+                                                @endphp
+                                            @endforeach
+                                            <td></td> <!-- Célula vazia para alinhar com o botão de salvar -->
+                                        </tr>
                                     @endforeach
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th scope="row">Manhã</th>
-                                    @foreach ($diasSemana as $dia)
-                                        <td>
-                                            <input type="checkbox" name="{{ $dia }}Manha"
-                                                id="{{ $dia }}Manha" disabled>
-                                        </td>
-                                    @endforeach
-                                </tr>
-                                <tr>
-                                    <th scope="row">Tarde</th>
-                                    @foreach ($diasSemana as $dia)
-                                        <td>
-                                            <input type="checkbox" name="{{ $dia }}Tarde"
-                                                id="{{ $dia }}Tarde" disabled>
-                                        </td>
-                                    @endforeach
-                                </tr>
-                                <tr>
-                                    <th scope="row">Noite</th>
-                                    @foreach ($diasSemana as $dia)
-                                        <td>
-                                            <input type="checkbox" name="{{ $dia }}Noite"
-                                                id="{{ $dia }}Noite" disabled>
-                                        </td>
-                                    @endforeach
-                                </tr>
-                            </tbody>
-                        </table>
-                    </form>
+                                </tbody>
+                            </table>
                 </div>
             </div>
         </div>
@@ -59,7 +49,7 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title"><strong>Observações</strong></h4>
-                    <textarea class="form-control" rows="5" readonly></textarea>
+                    <textarea class="form-control" rows="5" readonly> {{ $observacoes ? $observacoes->obsDocente : '' }}</textarea>
                 </div>
             </div>
         </div>

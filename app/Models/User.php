@@ -51,7 +51,7 @@ class User extends Authenticatable implements Importable
      */
     public $timestamps = true;
 
-     
+
     /**
      * The attributes that are mass assignable.
      *
@@ -65,7 +65,7 @@ class User extends Authenticatable implements Importable
         'password',
         'acn',
         'tipoUtilizador',
-        'restricaoSubmetida'
+        'restricaoSubmetida',
     ];
 
     /**
@@ -117,6 +117,7 @@ class User extends Authenticatable implements Importable
     {
         return $this->hasOne(Observacao::class, 'numeroFuncionario', 'numeroFuncionario');
     }
+
     public function todosNumerosFuncionariosENomes()
     {
         return $this->select('numeroFuncionario', 'nome','tipoUtilizador')->get();

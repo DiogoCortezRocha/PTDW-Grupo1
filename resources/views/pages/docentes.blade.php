@@ -52,7 +52,7 @@
                             </thead>
                             <tbody>
                                 @foreach ($users as $utilizador)
-                                    <tr onclick="window.location='{{ route('pages.detalhesDocente') }}';" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f5f5f5';" onmouseout="this.style.backgroundColor='';">
+                                    <tr onclick="window.location='{{ route('detalhesdocentes',['numeroFuncionario' => $utilizador->numeroFuncionario]) }}';" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f5f5f5';" onmouseout="this.style.backgroundColor='';">
                                         <td>
                                             {{ $utilizador->numeroFuncionario }}
                                         </td>
