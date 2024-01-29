@@ -74,3 +74,4 @@ Route::put('/formularioEdit/{id}', 'App\Http\Controllers\UnidadeCurricularContro
 
 Route::get('export', [ExportController::class, 'export']);
 
+Route::get('detalhescurso/{codigo}', [App\Http\Controllers\CursoController::class,'show'])->name('detalhescurso');

@@ -40,7 +40,8 @@
                             </thead>
                             <tbody>
                                 @foreach($cursos as $curso)
-                                    <tr onclick="window.location='';" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f5f5f5';" onmouseout="this.style.backgroundColor='';">
+                                
+                                    <tr onclick="window.location='{{ route('detalhescurso',['codigo' => $curso] ) }}';" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f5f5f5';" onmouseout="this.style.backgroundColor='';">
                                         <td>
                                             {{ $curso->codigo }}
                                         </td>
