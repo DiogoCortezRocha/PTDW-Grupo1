@@ -115,7 +115,7 @@
                 <h2 class="card-title"><strong>Importação e Exportação</strong></h2>
             </div>
             <div class="card-body d-flex justify-content-around align-items-center">
-                <button type="button" class="btn btn-primary" onclick="window.location='';">Importar</button>
+                <button type="button" class="btn btn-primary" onclick="window.location='{{ url('importDsd') }}';">Importar</button>
                 <button type="button" class="btn btn-primary" onclick="window.location='';">Exportar</button>
             </div>
         </div>
