@@ -73,4 +73,4 @@ Route::get('/PaginaInical', 'App\Http\Controllers\PageController@paginaInicial')
 
 Route::put('/formularioEdit/{id}', 'App\Http\Controllers\UnidadeCurricularController@update')->name('formularioEdit');
 
-
+Route::get('detalhescurso/{codigo}', [App\Http\Controllers\CursoController::class,'show'])->name('detalhescurso');
