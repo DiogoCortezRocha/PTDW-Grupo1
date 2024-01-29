@@ -26,11 +26,20 @@ class UserRequest extends FormRequest
     public function rules()
     {
         return [
+            'numeroFuncionario' => [
+                'required', 'min:5'
+            ],
             'nome' => [
                 'required', 'min:3'
             ],
             'email' => [
-                'required', 'email', Rule::unique((new User)->getTable())->ignore($this->route()->user->numeroFuncionario ?? null)
+                'required', 'email',
+                function () {
+                    Rule::unique((new User)->getTable())->ignore($this->route()->user ?? null);
+                },
+            ],
+            'telefone' => [
+                'required', 'min:9', 'max:9'
             ],
             'password' => [
                 $this->route()->user ? 'required_with:password_confirmation' : 'required', 'nullable', 'confirmed', 'min:6'

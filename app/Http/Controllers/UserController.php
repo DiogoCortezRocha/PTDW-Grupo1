@@ -11,6 +11,13 @@ use App\Imports\DocentesImport;
 
 class UserController extends Controller
 {
+    protected $user;
+
+    public function __construct(User $user)
+    {
+        $this->user = $user; // Initialize the $user property in the constructor
+    }
+
     /**
      * Display a listing of the users
      *
@@ -30,14 +37,37 @@ class UserController extends Controller
         return view('pages.docentes', compact('users'));
     }
 
+    /**
+     * Show the form for editing the user.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function edit(User $user)
+    // public function edit()
+    {
+        return view('users.edit',['user' => $user]);
+        // return view('users.edit');
+    }
+
+    /**
+     * Update the user
+     *
+     * @param  \App\Http\Requests\UserRequest  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function update(UserRequest $request, string $numeroFuncionario)
+    {
+        $this->user->where('numeroFuncionario', $numeroFuncionario)->update($request->except(['_token', '_method']));
+
+        return back()->withStatus(__('Utilizador atualizado com sucesso.'));
+    }
+
     public function import() {
         return view('pages.import');
     }
 
     public function storeImport(Request $request) {
-        // dd($request->all());
-        // dd(file($request->file->getRealPath()));
-
+       
         $request->validate([
             'file' => 'required|mimes:xls,xlsx',
         ]);
