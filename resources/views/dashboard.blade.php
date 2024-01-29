@@ -116,7 +116,7 @@
             </div>
             <div class="card-body d-flex justify-content-around align-items-center">
                 <button type="button" class="btn btn-primary" onclick="window.location='{{ url('importDsd') }}';">Importar</button>
-                <button type="button" class="btn btn-primary" onclick="window.location='';">Exportar</button>
+                <button type="button" class="btn btn-primary" onclick="window.location='{{ url('export') }}';">Exportar</button>
             </div>
         </div>
 

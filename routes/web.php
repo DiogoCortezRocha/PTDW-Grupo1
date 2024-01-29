@@ -1,10 +1,9 @@
 <?php
 
-use App\Http\Controllers\UnidadeCurricularController;
-use App\Models\UnidadeCurricular;
+use App\Http\Controllers\ExportController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -73,4 +72,5 @@ Route::get('/PaginaInical', 'App\Http\Controllers\PageController@paginaInicial')
 
 Route::put('/formularioEdit/{id}', 'App\Http\Controllers\UnidadeCurricularController@update')->name('formularioEdit');
 
+Route::get('export', [ExportController::class, 'export']);
 
