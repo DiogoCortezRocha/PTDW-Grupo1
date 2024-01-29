@@ -1,11 +1,12 @@
 @extends('layouts.app', ['page' => __('detalhesDocente'), 'pageSlug' => 'detalhesDocente'])
 
 @section('content')
+
     <div class="row">
-        <div class="col-md-8">
-            <div class="card">
+        <div class="col-md-8 ">
+            <div class="card" style="min-height: 94%;">
                 <div class="card-body">
-                    <h4 class="card-title"><strong>Impedimentos</strong></h4>
+                    <h4 class="card-title mb-4"><strong>Impedimentos de {{$user->nome}}</strong></h4>
                     
                             <table class="table">
                                 <thead>
@@ -45,51 +46,43 @@
             </div>
         </div>
 
-        <div class="col-md-4">
-            <div class="card">
+        <div class="col-md-4 ">
+            <div class="card " >
                 <div class="card-body">
-                    <h4 class="card-title"><strong>Observações</strong></h4>
-                    <textarea class="form-control" rows="5" readonly> {{ $observacoes ? $observacoes->obsDocente : '' }}</textarea>
+                    <h4 class="card-title"><strong>Observações Docente</strong></h4>
+                    <textarea class="form-control" rows="3" readonly> {{ $observacoes ? $observacoes->obsDocente : '' }}</textarea>
+                </div>
+            </div>
+            <div class="card ">
+                <div class="card-body">
+                    <h4 class="card-title"><strong>Suas observações</strong></h4>
+                     <textarea class="form-group w-100" name="observacoes" rows="3"> </textarea>
                 </div>
             </div>
         </div>
-
-
+        
+    </div>
 
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title"><strong>Editar Docente</strong></h4>
+                <h4 class="card-title"><strong>Unidades curriculares a lecionar</strong></h4>
             </div>
-            <form>
                 <div class="card-body">
-                    @csrf
-                    @method('put')
-
-                    @include('alerts.success')
-
-                    <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
-                        <label>{{ __('Nome') }}</label>
-                        <input type="text" name="name"
-                            class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"
-                            placeholder="{{ __('Name') }}" value="{{ old('name', $user->nome) }}">
-                        @include('alerts.feedback', ['field' => 'name'])
-                    </div>
-
-                    <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
-                        <label>{{ __('Email address') }}</label>
-                        <input type="email" name="email"
-                            class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
-                            placeholder="{{ __('Email address') }}" value="{{ old('email', $user->email) }}">
-                        @include('alerts.feedback', ['field' => 'email'])
+             @if (count($ucnome)>0)
+                @foreach ($ucnome as $uc)
+                 <p>{{$uc->name}}</p>
+                 
+                 @endforeach
+             @else
+              <p>Não contém unidades curriculares a lecionar</p>   
+             @endif (count($ucnome) > 0)  
+                  
                     </div>
                 </div>
-                <div class="card-footer">
-                    <button type="submit" class="btn btn-fill btn-primary">{{ __('Save') }}</button>
-                
-            </form>
-        </div>
+         </div>
+              
 
 
 
-    </div>
+    
 @endsection

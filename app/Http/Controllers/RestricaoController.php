@@ -5,11 +5,11 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Bloco;
 use App\Models\Restricoes;
+use App\Models\UnidadeCurricular;
 use Illuminate\Http\Request;
 use App\Models\Observacao;
 use App\Models\User;
-
-
+use App\Models\Utilizador_uc;
 
 class RestricaoController extends Controller
 {
@@ -81,11 +81,17 @@ public function delete()
     Restricoes::where('numeroFuncionario', $user->numeroFuncionario)->delete();
 }
 public function detalhes_docentes($numeroFuncionario){
-   
+  
     $user = User::where('numeroFuncionario', $numeroFuncionario)->first();
      $blocosUtilizador = $user->blocos;
- 
- 
+
+     $uc = Utilizador_uc::where('numeroFuncionario', $numeroFuncionario)->get();
+         $codigosUC = $uc->pluck('codigoUC')->toArray();
+        $ucnome=UnidadeCurricular::whereIn('codigo', $codigosUC)->get();
+        
+       
+
+
          $blocoInstance = new Bloco();
          $partesDoDiaDiferentes = $blocoInstance->partesDoDia();
          $diaDaSemanaDiferentes = $blocoInstance->diasDaSemana();
@@ -94,6 +100,6 @@ public function detalhes_docentes($numeroFuncionario){
         $observacoes= $user->observacao;
  
  
- return view('pages.detalhesDocente', compact('blocosUtilizador', 'partesDoDiaDiferentes', 'diaDaSemanaDiferentes', 'blocosTodos','observacoes','user'));
+ return view('pages.detalhesDocente', compact('blocosUtilizador', 'partesDoDiaDiferentes', 'diaDaSemanaDiferentes', 'blocosTodos','observacoes','user','ucnome'));
  }
 }
