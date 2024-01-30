@@ -1,13 +1,22 @@
 <div class="sidebar">
     <div class="sidebar-wrapper">
-        <div class="logo logo-container">
-            <strong> <a href="#" class="simple-text logo-normal">{{ __('ESTGA') }} </a></strong>
+        <div class="logo logo-container" style="display: flex; flex-direction: column; align-items: flex-start;">
+            <div style="display: flex; align-items: center; width: 100%;">
+                <img src="{{ asset('white/img/ua-logo.svg') }}" alt="logotipo" width="45">
+                <div class="UA" style="font-size: 30px; margin-left: 10px;">ESTGA</div>
+            </div>
             @if (auth()->user()->tipoUtilizador == 'ambos')
-                <div class="button-container">
-                    <button id="btn-docente" class="btn btn-primary">Docente</button>
-                    <button id="btn-comissaoHorarios" class="btn btn-primary">Comissão Horários</button>
+            <hr style="width: 100%; border: 0; border-top: 1px solid #e8eaedc0;">
+
+            <div class="row">
+                <div class="col-md-6 px-1 mb-2">
+                    <button id="btn-docente" class="btn btn-primary w-100 d-flex justify-content-center" style="padding: 10px; font-size: 16px;">Docente</button>
                 </div>
-            @endif
+                <div class="col-md-6 px-1 mb-2">
+                    <button id="btn-comissaoHorarios" class="btn btn-primary w-100 d-flex justify-content-center flex-column" style="padding: 10px; font-size: 16px;">Comissão <br> Horários</button>
+                </div>
+            </div>
+        @endif
         </div>
         <ul class="nav">
 

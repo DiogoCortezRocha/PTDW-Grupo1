@@ -18,8 +18,8 @@
         </button>
         <div class="collapse navbar-collapse" id="navigation">
 
-            <img src="{{ asset('white/img/ua-logo.svg') }}" alt="Icon" width="45">
-            <div class="UA"> Universidade de Aveiro
+            <img src="{{ asset('white/img/LogoPreto.png') }}" alt="Icon" width="45">
+            <div class="UA"> Aplicação para Recolha <br> de Dados de Docentes
             </div>
             <ul class="navbar-nav ml-auto">
 
