@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->unsignedBigInteger('numeroFuncionario')->primary();
             $table->string('nome');
-            $table->string('email')->unique();
+            $table->string('email')->unique()->nullable();
             $table->timestamp('email_verified_at')->nullable();
-            $table->bigInteger('telefone');
-            $table->string('password');
+            $table->bigInteger('telefone')->nullable();
+            $table->string('password')->nullable();
             $table->rememberToken();
             $table->string('acn');
             $table->enum('tipoUtilizador', ['docente', 'comissaoHorarios', 'ambos']);
