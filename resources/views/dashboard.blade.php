@@ -54,7 +54,7 @@
                         </thead>
                         <tbody>
                             @forelse ($utilizadores->where('restricaoSubmetida', false) as $utilizador)
-                                <tr onclick="window.location='{{ route('pages.detalhesDocente', $utilizador->id) }}';"
+                                <tr onclick="window.location='{{ route('detalhesdocentes',['numeroFuncionario' => $utilizador->numeroFuncionario]) }}'"
                                     style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f5f5f5';"
                                     onmouseout="this.style.backgroundColor='';">
 
@@ -88,7 +88,7 @@
                         </thead>
                         <tbody>
                             @forelse ($utilizadores->where('restricaoSubmetida', true) as $utilizador)
-                                <tr onclick="window.location='{{ route('pages.detalhesDocente', $utilizador->id) }}';"
+                                <tr onclick="window.location='{{ route('detalhesdocentes',['numeroFuncionario' => $utilizador->numeroFuncionario]) }}'"
                                     style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f5f5f5';"
                                     onmouseout="this.style.backgroundColor='';">
 
@@ -116,7 +116,7 @@
             </div>
             <div class="card-body d-flex justify-content-around align-items-center">
                 <button type="button" class="btn btn-primary" onclick="window.location='{{ url('importDsd') }}';">Importar</button>
-                <button type="button" class="btn btn-primary" onclick="window.location='';">Exportar</button>
+                <button type="button" class="btn btn-primary" onclick="window.location='{{ url('export') }}';">Exportar</button>
             </div>
         </div>
 

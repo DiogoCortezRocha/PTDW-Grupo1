@@ -16,4 +16,12 @@ public function Index()
 
     return view('pages.ciclosEstudos', compact('cursos'));
 }
+
+public function show($codigo){
+
+      // Encontrar o curso com o código fornecido
+      $curso = curso::where('codigo', $codigo)->first();
+      return view('pages.detalhescurso', compact('curso'));
+       
+    }
 }

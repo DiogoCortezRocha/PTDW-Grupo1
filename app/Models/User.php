@@ -94,7 +94,7 @@ class User extends Authenticatable implements Importable
      */
     public function unidadesCurriculares(): BelongsToMany
     {
-        return $this->belongsToMany(UnidadeCurricular::class,'Utilizador_UnidadeCurricular','codigoUC','numeroFuncionario');
+        return $this->belongsToMany(UnidadeCurricular::class,'Utilizador_UnidadeCurricular','numeroFuncionario','codigoUC');
     }
 
     /**
