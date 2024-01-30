@@ -10,7 +10,7 @@
                             <h2 class="card-title"><strong>Utilizadores</strong></h2>
                         </div>
                         <div class="col-4 text-right">
-                            <a href="#" class="btn btn-sm btn-primary">
+                            <a href="{{ route('user.create') }}" class="btn btn-sm btn-primary">
                                 <div style="display: flex; flex-direction: column; align-items: center;">
                                     <span>Adicionar</span>
                                     <span>Utilizador</span>

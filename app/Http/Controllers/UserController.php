@@ -43,10 +43,8 @@ class UserController extends Controller
      * @return \Illuminate\View\View
      */
     public function edit(User $user)
-    // public function edit()
     {
         return view('users.edit',['user' => $user]);
-        // return view('users.edit');
     }
 
     /**
@@ -62,6 +60,42 @@ class UserController extends Controller
         return back()->withStatus(__('Utilizador atualizado com sucesso.'));
     }
 
+    /**
+     * Show the form for creating a new user.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function create()
+    {
+        return view('users.create');
+    }
+
+    /**
+     * Store the user
+     *
+     * @param  \App\Http\Requests\UserRequest  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function store(UserRequest $request) {
+        
+        $exists=User::where('numeroFuncionario',$request->input('numeroFuncionario'))->exists();
+        if($exists) {
+            return back()->withStatus(__('Utilizador já existente!'));
+        }
+        
+        $this->user->create([
+            'numeroFuncionario' => $request->numeroFuncionario,
+            'nome' => $request->nome,
+            'email' => $request->email,
+            'telefone' => $request->telefone,
+            'password' => $request->password,
+            'acn' => $request->acn,
+            'tipoUtilizador' => $request->tipoUtilizador,
+        ]);
+
+        return back()->withStatus(__('Utilizador adicionado com sucesso.'));
+    }
+
     public function import() {
         return view('pages.import');
     }
@@ -74,7 +108,7 @@ class UserController extends Controller
 
         Excel::import(new DocentesImport, $request->file, \Maatwebsite\Excel\Excel::XLSX);
         
-        return redirect()->back()->with('alerts.success', 'Ficheiro importado com sucesso!');
+        return back()->withStatus(__('Ficheiro importado com sucesso!'));
         
     }
 }

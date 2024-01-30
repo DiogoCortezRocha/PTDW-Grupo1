@@ -51,8 +51,8 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'App\Http\Controllers\ProfileController@edit']);
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'App\Http\Controllers\ProfileController@update']);
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
-	// Route::get(user/create', ['as' => 'user.create', 'uses' => 'App\Http\Controllers\UserController@create']);
-	// Route::post(user', ['as' => 'user.store', 'uses' => 'App\Http\Controllers\UserController@store']);
+	Route::get('user/create', ['as' => 'user.create', 'uses' => 'App\Http\Controllers\UserController@create']);
+	Route::post('user', ['as' => 'user.store', 'uses' => 'App\Http\Controllers\UserController@store']);
 	// Route::get(user/{user}', ['as' => 'user.show', 'uses' => 'App\Http\Controllers\UserController@show']);
 	Route::get('user/{user}/edit', ['as' => 'user.edit', 'uses' => 'App\Http\Controllers\UserController@edit']);
 	Route::put('user/{user}', ['as' => 'user.update', 'uses' => 'App\Http\Controllers\UserController@update']);
