@@ -22,7 +22,7 @@
 
                             <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
                                 <label>{{ __('Endereço de Email') }}</label>
-                                <input type="email" name="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="{{ __('Email address') }}" value="{{ old('email', auth()->user()->email) }}">
+                                <input type="email" name="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="{{ __('Endereço de Email') }}" value="{{ old('email', auth()->user()->email) }}">
                                 @include('alerts.feedback', ['field' => 'email'])
                             </div>
                             <div class="form-group{{ $errors->has('telefone') ? ' has-danger' : '' }}">
