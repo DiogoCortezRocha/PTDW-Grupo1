@@ -8,7 +8,7 @@ use Maatwebsite\Excel\Concerns\WithUpserts;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use App\Contracts\Importable;
 
-class DsdImport implements ToModel, Withupserts, WithHeadingRow
+class DsdImport implements ToModel, WithUpserts, WithHeadingRow
 {
     protected $model;
 

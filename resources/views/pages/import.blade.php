@@ -28,6 +28,8 @@
                         @endif
                         <form action="{{ url('import') }}" method="POST" enctype="multipart/form-data">
                             @csrf
+
+                            @include('alerts.success')
                            
                             <div class="form-group">
                                 <div class="custom-file text-left">

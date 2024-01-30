@@ -32,6 +32,6 @@ class ImportController extends Controller
             Excel::import(new DsdImport($table), $file);
         }
         
-        return redirect()->back()->with('alerts.success', 'File imported successfully into all tables!');
+        return back()->withStatus(__('Ficheiro importado com sucesso em todas as tabelas!'));
     }
 }

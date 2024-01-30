@@ -108,7 +108,7 @@ class UserController extends Controller
 
         Excel::import(new DocentesImport, $request->file, \Maatwebsite\Excel\Excel::XLSX);
         
-        return redirect()->back()->with('alerts.success', 'Ficheiro importado com sucesso!');
+        return back()->withStatus(__('Ficheiro importado com sucesso!'));
         
     }
 }
